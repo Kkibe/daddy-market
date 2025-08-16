@@ -1,0 +1,52 @@
+.faq {
+    background: transparent;
+    border: 1px solid var(--light-color);
+    border-radius: 5px;
+    padding: 20px 5px;
+    position: relative;
+    overflow: hidden;
+    margin: 1rem 1rem;
+
+    div{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        h3{
+            margin: 0 35px 0 0;
+            font-size: 1.5rem;
+        }
+    }
+
+    p{
+        display: none;
+        margin: 30px 0 0;
+    }
+
+    .fas{
+        font-size: 2rem;
+    }
+
+
+    &.active {
+        background: var(--white);
+        box-shadow: var(--box-shadow);
+
+        &::before, &::after{
+            color: var(--green);
+            content: '\f075';
+            font-family: 'Font Awesome 5 Free';
+            font-size: 7rem;
+            position: absolute;
+            opacity: 0.2;
+            top: 20px;
+            left: 20px;
+            z-index: 0;
+        }
+
+        p{
+            display: block;
+        }
+    }
+
+}

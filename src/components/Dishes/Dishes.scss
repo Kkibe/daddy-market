@@ -1,0 +1,68 @@
+.dish {
+	padding: 1rem;
+	background: var(--white);
+	border-radius: 0.5rem;
+	border: 0.1rem solid rgba(0, 0, 0, 0.2);
+	box-shadow: var(--box-shadow);
+	position: relative;
+	overflow: hidden;
+	text-align: center;
+	.icon {
+		position: absolute;
+		top: 1.5rem;
+		background: var(--light-grey);
+		border-radius: 50%;
+		height: 3.5rem;
+		width: 3.5rem;
+		font-size: 2rem;
+		color: var(--black);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		&.heart {
+			left: -15rem;
+		}
+
+		&.eye {
+			right: -15rem;
+		}
+		&:hover {
+			background: var(--green);
+			color: var(--white);
+		}
+	}
+
+	&:hover {
+		.heart {
+			left: 1.5rem;
+		}
+
+		.eye {
+			right: 1.5rem;
+		}
+	}
+
+	img {
+		height: 20rem;
+		margin: 1rem 0;
+	}
+	h3 {
+		color: var(--black);
+		font-size: 2.5rem;
+	}
+	.stars {
+		padding: 1rem 0;
+		.star {
+			font-size: 1.7rem;
+			color: var(--green);
+		}
+	}
+
+	span {
+		color: var(--green);
+		font-weight: bolder;
+		margin-right: 1rem;
+		font-size: 2.5rem;
+	}
+}

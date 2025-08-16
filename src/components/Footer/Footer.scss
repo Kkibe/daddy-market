@@ -1,0 +1,76 @@
+.footer {
+	.container {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+		gap: 1.5rem;
+
+		.wrapper {
+			padding: 0.5rem 0;
+			font-size: 2.5rem;
+			color: var(--black);
+
+			a {
+				display: block;
+				padding: 0.5rem 0;
+				color: var(--light-color);
+				font-size: 1.7rem;
+				margin-top: 5px;
+				&:hover {
+					color: var(--green);
+					text-decoration: underline;
+				}
+			}
+
+			span {
+				display: flex;
+				width: 100%;
+				align-items: center;
+				justify-content: space-evenly;
+
+				a {
+					width: 4rem;
+					height: 4rem;
+					cursor: pointer;
+					font-size: 2.5rem;
+					color: var(--black);
+					border-radius: 50%;
+					background: var(--light-grey);
+					display: flex;
+					align-items: center;
+					justify-content: center;
+
+					&:hover {
+						color: var(--white);
+						background: var(--green);
+					}
+				}
+			}
+		}
+	}
+	.credit {
+		text-align: center;
+		border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+		font-size: 2rem;
+		color: var(--black);
+		padding: 0.5rem;
+		padding-top: 1.5rem;
+		margin-top: 1.5rem;
+
+		span {
+			color: var(--green);
+		}
+	}
+}
+
+@media screen and (max-width: 605px) {
+	.footer .container {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1rem; /* Only need to define this once */
+	}
+
+	/* Target the last .wrapper and make it span full width */
+	.footer .wrapper:last-child {
+		grid-column: 1 / -1; /* Spans from first to last column */
+	}
+}

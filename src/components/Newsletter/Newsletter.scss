@@ -1,0 +1,33 @@
+.newsletter{
+    width: 100%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    font-size: 1.4rem;
+
+    form{
+        width: 280px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 5px;
+    
+        input{
+            width: 100%;
+            height: 100%;
+            flex: 6;
+            border: 1px solid var(--light-color);
+        }
+
+        button{
+            width: 100%;
+            height: 100%;
+            flex: 1;
+            margin: 0;
+            border-radius: 0px 5px 5px 0;
+        }
+    }
+}
