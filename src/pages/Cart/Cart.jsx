@@ -9,7 +9,7 @@ import { cartTotalSelector } from '../../recoil/selectors';
 
 export default function Cart() {
 	const cartItems = useRecoilValue(cartState);
-	const { subtotal, shipping, discount, total, itemCount, totalQuantity } = useRecoilValue(cartTotalSelector);
+	const { subtotal, shipping, discount, total, totalQuantity } = useRecoilValue(cartTotalSelector);
 	const { clearCart } = useCartActions();
 
 	return (
@@ -76,7 +76,7 @@ export default function Cart() {
 								type="button"
 								className="checkout-btn btn-primary btn-lg btn-block btn"
 							>
-								Proceed to Checkout
+								Order Now
 							</NavLink>
 						</div>
 					</div>

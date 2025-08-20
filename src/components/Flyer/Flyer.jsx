@@ -1,4 +1,4 @@
-import Image from '../../assets/download.jpg';
+import Image from '../../assets/logo.png';
 import './Flyer.scss';
 
 export default function Flyer() {

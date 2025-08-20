@@ -1,4 +1,5 @@
 /*existing code*/
+
 /*:root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -12,6 +13,13 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 2rem;
+	text-align: center;
 }
 
 a {
@@ -94,8 +102,9 @@ button:focus-visible {
 	outline: none;
 	border: none;
 	/*text-transform: capitalize;*/
-	transition: all 0.2s linear;
+	/*transition: all 0.2s linear;*/
 	font: 1em sans-serif;
+	transition: all .3s ease-in-out;
 }
 
 input {
@@ -176,6 +185,16 @@ section:last-child {
 	letter-spacing: 0.1rem;
 }
 
+.btn.in-cart .cart-icon{
+	color: var(--green);
+}
+
+.btn.in-cart:hover{
+	border: 1px solid red;
+	color: red;
+	background: transparent;
+}
+
 #close {
 	position: absolute;
 	color: var(--white);
@@ -204,14 +223,15 @@ section:last-child {
 	position: fixed;
 	cursor: pointer;
 	bottom: 8px;
-	right: 10px;
+	right: 8px;
 	border: none;
 	outline: none;
-	border: 1px solid var(--black);
+	border: 1.5px solid var(--black);
 	background-color: transparent;
 	border-radius: 50%;
 	z-index: 996;
 	transition: all 0.3s ease-in-out;
+	font-size: 14px;
 
 	/*bottom: 10px;
     right: 20px;
@@ -220,6 +240,7 @@ section:last-child {
 
 .btn-top:hover {
 	background-color: var(--green);
+	color: var(--white);
 }
 
 ::-webkit-scrollbar {

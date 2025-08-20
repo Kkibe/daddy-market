@@ -3,12 +3,12 @@ import './Product.scss'
 import { FaMinus } from "react-icons/fa6";
 import { FaPlus, FaStar } from 'react-icons/fa';
 
-import { dishes } from '../../../data';
-import PopularStoreItem from '../../pages/Store/PopularStoreItem';
+import {   products} from '../../../data';
+import PopularStoreItem from '../../components/ProductCards/PopularStoreItem';
 
 export default function Product() {
   const [inStore, setInStore] = useState(false);
-  const data = dishes[3];
+  const data = products[3];
   const [items, setItems] = useState(1);
 
   const handleAdd = (type) => {
@@ -26,7 +26,7 @@ export default function Product() {
     <div className='product'>
       <div className="card">
         <div className="image">
-          <img src={item.imageUrl} alt="" />
+          <img src={item.image} alt="" />
         </div>
         <div className="content">
           <h3>{data.description}</h3>
@@ -60,7 +60,7 @@ export default function Product() {
         <h3>You Might Also Like</h3>
         <div className="container">
           {
-            dishes && dishes.map(item => {
+            products && products.map(item => {
               return <PopularStoreItem data={{ ...item }} key={item.id} />
             })
           }</div>

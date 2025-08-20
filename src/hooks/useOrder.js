@@ -2,7 +2,7 @@ import { useRecoilState } from 'recoil';
 import { ordersState } from '../recoil/atoms';
 import { orderService } from '../../firebase';
 import { useNotification } from './useNotification';
-import { useCart } from './useCart';
+import { useCartActions} from './useCartActions';
 
 export const useOrder = () => {
     const [orders, setOrders] = useRecoilState(ordersState);

@@ -1,7 +1,6 @@
-import React from 'react'
 import './Menu.scss';
-import { FaEye, FaStar, FaStarHalf } from "react-icons/fa";
-import { menus } from '../../../data';
+import { FaEye } from "react-icons/fa";
+import { products } from '../../../data';
 
 export default function Menu() {
   const toggleSingle = () => {
@@ -12,7 +11,7 @@ export default function Menu() {
     return (
       <div className="card">
         <div className="image">
-          <img src={data.imageUrl} alt="" />
+          <img src={data.image} alt="" />
           <a className="icon eye" onClick={toggleSingle}><FaEye /></a>
         </div>
         <div className="content">
@@ -38,7 +37,7 @@ export default function Menu() {
       <h1>Trending Today</h1>
       <div className="container">
         {
-          menus && menus.map(item => {
+          products && products.map(item => {
             return <Item data={{ ...item }} key={item.id} />
           })
         }

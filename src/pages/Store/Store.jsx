@@ -1,11 +1,11 @@
 import './Store.scss';
 import { useRecoilValue } from 'recoil';
 import { useEffect, useState } from 'react';
-import PopularStoreItem from './PopularStoreItem';
+import PopularStoreItem from '../../components/ProductCards/PopularStoreItem';
 import Flyer from '../../components/Flyer/Flyer';
 import Dishes from '../../components/Dishes/Dishes';
-import ProductItem from '../../components/ProductItem';
-import StoreItem from '../../components/StoreItem';
+import ProductItem from '../../components/ProductCards/ProductItem';
+import StoreItem from '../../components//ProductCards/StoreItem';
 import { useProduct } from '../../hooks/useProduct';
 import Loader from '../../components/Loader/Loader';
 import { filteredProductsSelector } from '../../recoil/selectors';

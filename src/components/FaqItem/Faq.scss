@@ -2,7 +2,7 @@
     background: transparent;
     border: 1px solid var(--light-color);
     border-radius: 5px;
-    padding: 20px 5px;
+    padding: 5px 5px;
     position: relative;
     overflow: hidden;
     margin: 1rem 1rem;
@@ -14,17 +14,23 @@
 
         h3{
             margin: 0 35px 0 0;
-            font-size: 1.5rem;
+            font-size: 2rem;
+            font-weight: 600;
         }
     }
 
     p{
-        display: none;
-        margin: 30px 0 0;
+        //display: none;
+        //margin: 30px 0 0;
+
+        max-height: 0px;
+        overflow: hidden;
+        font-weight: 600;
+        //font
     }
 
     .fas{
-        font-size: 2rem;
+        font-size: 3rem;
     }
 
 
@@ -32,7 +38,7 @@
         background: var(--white);
         box-shadow: var(--box-shadow);
 
-        &::before, &::after{
+        /*&::before, &::after{
             color: var(--green);
             content: '\f075';
             font-family: 'Font Awesome 5 Free';
@@ -42,10 +48,32 @@
             top: 20px;
             left: 20px;
             z-index: 0;
+        }*/
+
+
+        @keyframes show {
+            0% {
+                max-height: 0px;
+                margin: 0px;
+            }
+            100% {
+                max-height: min-content;
+                margin: 30px 0 0;
+            }
         }
 
         p{
-            display: block;
+            //display: block;
+
+            max-height: min-content;
+            margin: 10px 0 0;
+            letter-spacing: .25rem;
+            //background: greenyellow;
+            text-decoration: wavy;
+
+            //better for animation
+            //animation: show 2s  linear;
+
         }
     }
 

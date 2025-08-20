@@ -16,13 +16,13 @@ import {
     isInCartSelector
 } from '../recoil/selectors';
 import { productService } from '../../firebase';
-import { useCart } from './useCart';
+import { useCartActions} from './useCartActions';
 import { useWishlist } from './useWishlist';
 
 export const useProduct = () => {
     const [products, setProducts] = useRecoilState(productsState);
     const [filter, setFilter] = useRecoilState(filterState);
-    const { cart, addToCart, removeFromCart, updateQuantity } = useCart();
+    const { cart, addToCart, removeFromCart, updateQuantity } = useCartActions();
     const { wishlist, toggleWishlistItem } = useWishlist();
     const filteredProducts = useRecoilValue(filteredProductsSelector);
 

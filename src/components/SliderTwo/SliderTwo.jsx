@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import './SliderTwo.scss'
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import { dishes } from '../../../data';
+import { products } from '../../../data';
 
 export default function SliderTwo() {
     const [slideIndex, setSlideIndex] = useState(0);
     const handleClick = (direction) => {
         if (direction === "left") {
-            setSlideIndex(slideIndex > 0 ? slideIndex - 1 : (dishes.length - 1))
+            setSlideIndex(slideIndex > 0 ? slideIndex - 1 : (products.length - 1))
         } else {
-            setSlideIndex(slideIndex < (dishes.length - 1) ? slideIndex + 1 : 0)
+            setSlideIndex(slideIndex < (products.length - 1) ? slideIndex + 1 : 0)
         }
     }
     return (
@@ -19,7 +19,7 @@ export default function SliderTwo() {
             </div>
             <div className="slide-wrapper" style={{ transform: `translateX(${slideIndex * -100}vw)` }}>
                 {
-                    dishes && dishes.map(dish => {
+                    products && products.map(dish => {
                         return (
                             <div className="slide container">
                                 <div className="image">

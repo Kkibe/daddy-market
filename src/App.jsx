@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import { RecoilRoot, useRecoilState } from 'recoil';
-import { ShareSocial } from 'react-share-social';
 import { FaArrowUp } from 'react-icons/fa';
 import { authState } from './recoil/atoms';
 
@@ -24,6 +23,7 @@ import Single from './components/Single/Single';
 import Product from './pages/Product/Product';
 import Store from './pages/Store/Store';
 import { authService } from '../firebase';
+import ThanksModal from './components/ThanksModal/ThanksModal';
 
 const Layout = () => {
   return (
@@ -117,7 +117,12 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [auth, setAuth] = useRecoilState(authState);
 
+
   useEffect(() => {
+    setTimeout(() => {
+      console.log("hello world!")
+  });
+
     // Set up auth state listener
     const unsubscribe = authService.onAuthChange((user) => {
       setAuth({

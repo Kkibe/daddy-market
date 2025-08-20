@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './Faq.scss'
 import { FaChevronCircleDown, FaChevronCircleUp } from 'react-icons/fa';
 
-export default function Faq() {
+export default function Faq({data}) {
     const [isActive, setIsActive] = useState(false);
   const handleClick = () => {
     if(isActive){
@@ -15,12 +15,12 @@ export default function Faq() {
 	<div className={`faq ${isActive ? "active" : ""}`} onClick={handleClick}>
     <div>
       <h3>
-			  What's the object-oriented way to become wealthy? 
+          {data.question}?
 		  </h3>
-      {!isActive  ? <FaChevronCircleUp className="fas fa-chevron-down"/> : <FaChevronCircleDown className="fas fa-chevron-down" onClick={handleClick}/> }
+      {!isActive  ? <FaChevronCircleDown className="fas fa-chevron-down" onClick={handleClick}/> : <FaChevronCircleUp className="fas fa-chevron-down"/> }
     </div>
 		<p>
-			Inheritance.
+			{data.answer}
 		</p>
 	</div>
   )

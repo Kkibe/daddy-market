@@ -61,6 +61,19 @@
 						font-size: 2rem;
 						padding-bottom: 0.5rem;
 					}
+
+					.user-info{
+						p{
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							gap: 5px;
+
+							.star{
+								color: #f8c441;
+							}
+						}
+					}
 				}
 			}
 		}

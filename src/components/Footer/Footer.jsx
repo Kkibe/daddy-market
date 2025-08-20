@@ -1,6 +1,6 @@
-import { ShareSocial } from 'react-share-social';
 import './Footer.scss';
-import { FaFacebook, FaInstagram, FaPinterest, FaTwitter, FaWhatsapp } from 'react-icons/fa';
+import { appName, socialUrls } from '../../../data';
+import { Link, NavLink } from 'react-router-dom';
 
 export default function Footer() {
     return (
@@ -8,32 +8,32 @@ export default function Footer() {
             <div className="container">
                 <div className="wrapper">
                     <h3>Quick Links</h3>
-                    <a href="#">shop now</a>
-                    <a href="#">my cart</a>
-                    <a href="#">get started</a>
-                    <a href="#">about us</a>
+                    <NavLink to="/shop">Shop Now</NavLink>
+                    <NavLink to="/cart">My Cart</NavLink>
+                    <NavLink to="/register">Get Started</NavLink>
+                    <NavLink to="/about-us">About Us</NavLink>
                 </div>
                 <div className="wrapper">
-                    <h3>locations</h3>
-                    <a href="#">Kangemi</a>
-                    <a href="#">Ndumbuini</a>
-                    <a href="#">Nairobi CBD</a>
-                    <a href="#">Uthiru</a>
+                    <h3>Locations</h3>
+                    <NavLink to="#">Kangemi</NavLink>
+                    <NavLink to="#">Ndumbuini</NavLink>
+                    <NavLink to="#">Nairobi CBD</NavLink>
+                    <NavLink to="#">Uthiru</NavLink>
                 </div>
                 <div className="wrapper">
                     <h3>contact us</h3>
-                    <a href="#">+254 797814027</a>
-                    <a href="#">valleydishes@gmail.com</a>
+                    <NavLink to="tel:+254 797814027">+254 797814027</NavLink>
+                    <NavLink to="mailto:daddymarket@gmail.com">daddymarket@gmail.com</NavLink>
                     <span>
-                        <a href=""><FaFacebook className='link' /></a>
-                        <a href=""><FaWhatsapp className='link' /></a>
-                        <a href=""><FaPinterest className='link' /></a>
-                        <a href=""><FaTwitter className='link' /></a>
-                        <a href=""><FaInstagram className='link' /></a>
+                        {
+                            socialUrls.map(item => {
+                                return <Link to={item.url} title={item.title} target='_blank'>{item.icon }</Link>
+                            })
+                        }
                     </span>
                 </div>
             </div>
-            <div className="credit">&copy; 2024 by <span>Valley Dishes</span></div>
+            <div className="credit">&copy; {new Date().getFullYear()} by <span>{appName }</span></div>
         </section>
     )
 }

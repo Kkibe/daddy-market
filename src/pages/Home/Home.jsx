@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import './Home.scss'
-import ProductItem from '../../components/ProductItem'
-import PopularStoreItem from '../Store/PopularStoreItem';
-import { dishes, categories } from '../../../data';
+import ProductItem from '../../components/ProductCards/ProductItem';
+import PopularStoreItem from '../../components/ProductCards/PopularStoreItem';
+import { products, categories } from '../../../data';
 import { NavLink } from 'react-router-dom';
 import Menu from '../../components/Menu/Menu';
 import SliderOne from '../../components/SliderOne/SliderOne';
@@ -12,22 +12,22 @@ export default function Home() {
   const [slideIndex, setSlideIndex] = useState(0);
   const handleClick = (direction) => {
     if (direction === "left") {
-      setSlideIndex(slideIndex > 0 ? slideIndex - 1 : (dishes.length - 1))
+      setSlideIndex(slideIndex > 0 ? slideIndex - 1 : (products.length - 1))
     } else {
-      setSlideIndex(slideIndex < (dishes.length - 1) ? slideIndex + 1 : 0)
+      setSlideIndex(slideIndex < (products.length - 1) ? slideIndex + 1 : 0)
     }
   }
   return (
     <section className='home'>
       <div className="slide container">
         <div className="image">
-          <img src={dishes[0].image} alt="" />
+          <img src={products[0].image} alt="" />
         </div>
         <div className='slide-container'>
-          <span>KSH {dishes[0].price}</span>
+          <span>KSH {products[0].price}</span>
           <hr />
-          {/*<h1 className='heading'>{dishes[0].description}</h1>*/}
-          <p>{dishes[0].description}</p>
+          {/*<h1 className='heading'>{products[0].description}</h1>*/}
+          <p>{products[0].description}</p>
           <a href="#" className='btn'>Shop Now</a>
         </div>
       </div>
@@ -58,7 +58,7 @@ export default function Home() {
       <h1>today's specialty</h1>
       <div className="popular">
         {
-          dishes && dishes.map(item => {
+          products && products.map(item => {
             return <PopularStoreItem data={{ ...item }} key={item.id} />
           })
         }

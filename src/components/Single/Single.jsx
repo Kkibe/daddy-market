@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './Single.scss'
 import { FaMinus, FaXmark } from "react-icons/fa6";
 import { FaPlus, FaShippingFast, FaStar, FaStarHalf } from 'react-icons/fa';
-import Image from '../../assets/MyNutrition.png';
+import Image from '../../assets/logo.png';
 
 export default function Single() {
   const [items, setItems] = useState(0);

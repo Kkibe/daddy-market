@@ -1,0 +1,57 @@
+.order {
+	form {
+		max-width: 90rem;
+		min-height: 50vh;
+		border-radius: 0.5rem;
+		box-shadow: var(--box-shadow);
+		border: 0.1rem solid rgba(0, 0, 0, 0.2);
+		background: var(--white);
+		padding: 1.5rem;
+
+		display: flex;
+		flex-direction: column;
+		align-items: normal;
+		justify-content: space-evenly;
+		.inputBox {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			.input {
+				width: 49%;
+				span {
+					display: block;
+					padding: 0.5rem 0;
+					font-size: 1.5rem;
+					color: var(--light-color);
+				}
+				input,
+				textarea {
+					background: var(--light-grey);
+					border-radius: 0.5rem;
+					padding: 1rem;
+					font-size: 1.6rem;
+					color: var(--black);
+					text-transform: none;
+					margin-bottom: 1rem;
+					width: 100%;
+					&:focus {
+						border: 0.1rem solid var(--green);
+					}
+					&.btn {
+						margin-right: auto;
+						width: 100%;
+					}
+				}
+				textarea {
+					height: 20rem;
+					resize: none;
+				}
+
+				&.radio {
+					display: flex;
+					flex-direction: row;
+				}
+			}
+		}
+	}
+}

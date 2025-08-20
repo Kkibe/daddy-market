@@ -1,15 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './Dishes.scss';
 import { FaEye, FaShareAlt, FaStar, } from 'react-icons/fa';
 import ShareModal from '../ShareModal/ShareModal';
 
 export default function Dishes({ data }) {
-  const [visible, setVisible] = useState(false);
   const toggleSingle = () => {
     document.querySelector('.single').classList.toggle('active');
 
   }
-
   const returnRatings = (item) => {
     let arrays = [];
     for (let i = 0; i < item; i++) {
@@ -18,6 +16,8 @@ export default function Dishes({ data }) {
     return arrays;
   }
   const Dish = ({ item }) => {
+    const [visible, setVisible] = useState(false);
+
     return (
       <div className="dish">
         {
@@ -25,7 +25,7 @@ export default function Dishes({ data }) {
         }
         <a className="icon heart" onClick={() => setVisible(true)}><FaShareAlt /></a>
         <a className="icon eye" onClick={toggleSingle}><FaEye /></a>
-        <img src={item.imageUrl} alt="" />
+        <img src={item.image} alt="" />
         <h3>{item.description}</h3>
         {/*<div className="stars">
           {

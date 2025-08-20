@@ -1,13 +1,13 @@
-import React from 'react';
 import './About.css';
-import Image from '../../assets/kpl.webp';
+import Image from '../../assets/logo.png';
 import { FaCheckCircle, FaDollarSign, FaFacebook, FaHeadset, FaInstagram, FaShippingFast, FaTwitter, FaYoutube } from "react-icons/fa";
 import Faq from '../../components/FaqItem/Faq';
 import Review from '../../components/Review/Review';
-import { FaX, FaXTwitter } from 'react-icons/fa6';
+import { FaXTwitter } from 'react-icons/fa6';
 import Newsletter from '../../components/Newsletter/Newsletter';
 import { NavLink } from 'react-router-dom';
 import { ShareSocial } from 'react-share-social';
+import { faqs, socialUrls } from '../../../data';
 
 export default function About() {
     return (
@@ -19,7 +19,7 @@ export default function About() {
                     </div>
 
                     <div className="channel-title">
-                        <h1>KPLFOODCOOP<FaCheckCircle className='check' /></h1>
+                        <h1>Daddy Market<FaCheckCircle className='check' /></h1>
                     </div>
 
                     <div className="channel-subscribe">
@@ -27,12 +27,13 @@ export default function About() {
                         <button className="twitter-btn" aria-label="Enable Notifications"><FaXTwitter /></button>
                     </div>
                 </div>
-                <p>Welcome all to kplfoodcoop. Here you will be able to shop food products for all your household needs. Feel free to ask any question in the contact page and don't forget to subscribe to our newsletter.</p>
+                <p>Welcome all to Daddy Market. Here you will be able to shop food products for all your household needs. Feel free to ask any question in the contact page and don't forget to subscribe to our newsletter.</p>
                 <span>
-                    <a href="https://www.facebook.com/kibetkorirc" className='facebook icon' target='_blank' title='facebook'><FaFacebook /></a>
-                    <a href="https://twitter.com/ancientpupy" className='twitter icon' target='_blank' title='twitter'><FaXTwitter /></a>
-                    <a href="https://www.instagram.com/ancientpupy/" className='instagram icon' target='_blank' title='instagram'><FaInstagram /></a>
-                    <a href="/contact" title='contact' className='btn'>Contact Us</a>
+                    {
+                        socialUrls.map(item => {
+                            return <NavLink to={item.url} className='icon' target='_blank' title={item.title}>{ item.icon}</NavLink>
+                        })
+                    }
                 </span>
             </div>
             <div className="row">
@@ -92,16 +93,17 @@ export default function About() {
             </div>
             <h1>FAQ</h1>
             <div className="faqs-container">
-                <Faq />
-                <Faq />
-                <Faq />
-                <Faq />
+                {
+                    faqs.map(item => {
+                        return <Faq data={item} />
+                    })
+                }
             </div>
             <Review />
             <Newsletter />
             <ShareSocial
                 url={window.location.origin}
-                socialTypes={['facebook', 'twitter', 'reddit', 'linkedin']}
+                socialTypes={['facebook', 'twitter', 'reddit', 'linkedin', 'telegram', 'whatsapp', 'line','email']}
                 title={'share with friends'}
                 className="share-social"
             />
