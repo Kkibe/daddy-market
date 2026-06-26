@@ -27,16 +27,20 @@ export default function PopularStoreItem({ data }) {
     };
 
     return (
-        <div className="card-wrapper">
+        <div className="card-wrapper popular-card-wrapper">
             <ShareModal visible={showShareModal} setVisible={setShowShareModal} product={data} />
             <motion.div
-                className="card"
+                className="card popular-card"
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.2 }}
             >
                 <div className="image">
                     <img src={data.image} alt={data.title} loading="lazy" />
-                    <button className='icon share' onClick={() => setShowShareModal(true)} aria-label="Share">
+                    <button
+                        className='share-btn'
+                        onClick={() => setShowShareModal(true)}
+                        aria-label="Share"
+                    >
                         <FaShareAlt />
                     </button>
                 </div>
@@ -56,7 +60,7 @@ export default function PopularStoreItem({ data }) {
                     <p>{data.description}</p>
 
                     <button
-                        className={`add-to-cart add ${isInCart ? 'in-cart' : ''}`}
+                        className={`add-to-cart ${isInCart ? 'in-cart' : ''}`}
                         onClick={handleAddToCart}
                         aria-label={isInCart ? 'Remove from cart' : 'Add to cart'}
                     >

@@ -5,7 +5,15 @@
 	overflow: hidden;
 	background: linear-gradient(135deg, #f0f4f8 0%, var(--white) 100%);
 
+	.slide-wrapper {
+		display: flex;
+		width: 100%;
+		transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
 	.slide {
+		flex: 0 0 100%;
+		min-width: 100%;
 		width: 100%;
 		display: flex;
 		align-items: center;
@@ -13,6 +21,7 @@
 		flex-wrap: wrap;
 		gap: 2rem;
 		padding: 2rem;
+		box-sizing: border-box;
 	}
 
 	.slide-container {
