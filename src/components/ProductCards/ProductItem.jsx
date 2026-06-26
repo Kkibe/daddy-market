@@ -1,50 +1,44 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { FaCartPlus, FaCheckCircle } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
-import Image from '../../assets/logo.png';
-//import { useCartActions} from '../hooks/useCartActions';
 import { useCartActions } from '../../hooks/useCartActions';
 
-export default function ProductItem({ product = {
-    id: 'default-id',
-    title: 'Delicious chicken piece',
-    description: '1 chicken piece with regular chips.',
-    price: 159,
-    image: Image // Changed from 'image' to 'image' to match your usage
-} }) {
+export default function ProductItem({ product }) {
     const [isHovered, setIsHovered] = useState(false);
     const { addToCart, cart, removeFromCart } = useCartActions();
 
-    // Check if product is already in cart
     const isInCart = cart.some(item => item.id === product.id);
 
     const handleAddToCart = (e) => {
-        e.stopPropagation(); // Prevent event bubbling
-        e.preventDefault(); // Prevent default behavior
+        e.stopPropagation();
+        e.preventDefault();
         if (isInCart) {
             removeFromCart(product.id);
         } else {
             addToCart({
                 id: product.id,
-                title: product.description, // Using description as title
+                title: product.title,
                 description: product.description,
                 price: product.price,
-                image: product.image, // Using image
-                quantity: 1
+                image: product.image,
+                quantity: 1,
             });
         }
     };
 
     return (
-        <div
+        <motion.div
             className={`product-card card blog ${isHovered ? 'hovered' : ''}`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
+            whileHover={{ y: -4 }}
+            transition={{ duration: 0.2 }}
         >
             <div className="product-image-container image">
                 <img
                     src={product.image}
-                    alt={product.description}
+                    alt={product.title}
                     className="product-image"
                     loading="lazy"
                 />
@@ -55,30 +49,21 @@ export default function ProductItem({ product = {
                     <span className="product-price trailing">
                         KSH: <span className="price-amount">{product.price.toLocaleString()}</span>
                     </span>
-                    <button // Changed from div to button for better accessibility
+                    <button
                         className={`add-to-cart-btn btn ${isInCart ? 'in-cart' : ''}`}
                         onClick={handleAddToCart}
-
-                        aria-label={isInCart ? 'Item in cart' : 'Add to cart'}
+                        aria-label={isInCart ? 'Remove from cart' : 'Add to cart'}
                     >
-                        {isInCart ? (
-                            <>
-                                Remove <FaCheckCircle className="cart-icon" />
-                            </>
-                        ) : (
-                            <>
-                                Add to <FaCartPlus className="cart-icon" />
-                            </>
-                        )}
+                        {isInCart ? <FaCheckCircle className="cart-icon" /> : <FaCartPlus className="cart-icon" />}
                     </button>
                 </div>
 
-                <NavLink to={`/products/${product.id}`} className="product-title-link">
-                    <h3 className="product-title">{product.description}</h3>
+                <NavLink to={`/shop/${product.id}`} className="product-title-link">
+                    <h3 className="product-title">{product.title}</h3>
                 </NavLink>
 
                 <p className="product-description">{product.description}</p>
             </div>
-        </div>
+        </motion.div>
     );
 }

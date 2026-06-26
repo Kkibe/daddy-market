@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import './Home.scss'
+import { motion } from 'framer-motion';
 import ProductItem from '../../components/ProductCards/ProductItem';
 import PopularStoreItem from '../../components/ProductCards/PopularStoreItem';
 import { products, categories } from '../../../data';
@@ -7,71 +6,95 @@ import { NavLink } from 'react-router-dom';
 import Menu from '../../components/Menu/Menu';
 import SliderOne from '../../components/SliderOne/SliderOne';
 import SliderTwo from '../../components/SliderTwo/SliderTwo';
+import './Home.scss';
 
 export default function Home() {
-  const [slideIndex, setSlideIndex] = useState(0);
-  const handleClick = (direction) => {
-    if (direction === "left") {
-      setSlideIndex(slideIndex > 0 ? slideIndex - 1 : (products.length - 1))
-    } else {
-      setSlideIndex(slideIndex < (products.length - 1) ? slideIndex + 1 : 0)
-    }
-  }
   return (
     <section className='home'>
-      <div className="slide container">
-        <div className="image">
-          <img src={products[0].image} alt="" />
-        </div>
-        <div className='slide-container'>
-          <span>KSH {products[0].price}</span>
-          <hr />
-          {/*<h1 className='heading'>{products[0].description}</h1>*/}
-          <p>{products[0].description}</p>
-          <a href="#" className='btn'>Shop Now</a>
-        </div>
+      <div className="hero-slide">
+        <motion.div
+          className="hero-image"
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <img src={products[0].image} alt={products[0].title} />
+        </motion.div>
+        <motion.div
+          className="hero-content"
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          <span className="hero-price">KSH {products[0].price.toLocaleString()}</span>
+          <h1 className="hero-title">{products[0].title}</h1>
+          <p className="hero-desc">{products[0].description}</p>
+          <NavLink to="/shop" className="btn hero-cta">Shop Now</NavLink>
+        </motion.div>
       </div>
 
+      <div className="section-header">
+        <h3 className="sub-heading">Browse</h3>
+        <h1>Shop by Category</h1>
+      </div>
 
       <div className="categories">
-        {
-          categories && categories.map((category) => {
-            return (
-              <NavLink to={category.link}>
-                <div className="card" key={category.id}>
-                  <div className="image">
-                    <img src={category.image} alt="" />
-                  </div>
-                  <div className="content">
-                    <h3 >{category.title}</h3>
-                  </div>
+        {categories.map((category, i) => (
+          <motion.div
+            key={category.id}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.05 }}
+          >
+            <NavLink to={category.link}>
+              <div className="card category-card">
+                <div className="image">
+                  <img src={category.image} alt={category.title} />
                 </div>
-              </NavLink>
-            )
-          })
-        }
+                <div className="content">
+                  <h3>{category.title}</h3>
+                </div>
+              </div>
+            </NavLink>
+          </motion.div>
+        ))}
       </div>
 
       <Menu />
       <SliderOne />
-      <h3 className="sub-heading">our menu</h3>
-      <h1>today's specialty</h1>
-      <div className="popular">
-        {
-          products && products.map(item => {
-            return <PopularStoreItem data={{ ...item }} key={item.id} />
-          })
-        }
+
+      <div className="section-header">
+        <h3 className="sub-heading">Our Menu</h3>
+        <h1>Today's Specialty</h1>
       </div>
+
+      <div className="popular">
+        {products.slice(0, 8).map((item, i) => (
+          <motion.div
+            key={item.id}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: (i % 4) * 0.05 }}
+          >
+            <PopularStoreItem data={{ ...item }} />
+          </motion.div>
+        ))}
+      </div>
+
       <SliderTwo />
-      <h3 className="sub-heading">Explore Our Blog</h3>
-      <h1 className="heading">Trending Posts</h1>
+
+      <div className="section-header">
+        <h3 className="sub-heading">Explore Our Blog</h3>
+        <h1>Trending Posts</h1>
+      </div>
+
       <div className="posts">
-        <ProductItem />
-        <ProductItem />
-        <ProductItem />
-        <ProductItem />
+        {products.slice(0, 4).map((item) => (
+          <ProductItem key={item.id} product={item} />
+        ))}
       </div>
     </section>
-  )
+  );
 }

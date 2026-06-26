@@ -1,70 +1,61 @@
 import './Store.scss';
 import { useRecoilValue } from 'recoil';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 import PopularStoreItem from '../../components/ProductCards/PopularStoreItem';
 import Flyer from '../../components/Flyer/Flyer';
 import Dishes from '../../components/Dishes/Dishes';
 import ProductItem from '../../components/ProductCards/ProductItem';
-import StoreItem from '../../components//ProductCards/StoreItem';
-import { useProduct } from '../../hooks/useProduct';
-import Loader from '../../components/Loader/Loader';
+import StoreItem from '../../components/ProductCards/StoreItem';
+import { products } from '../../../data';
 import { filteredProductsSelector } from '../../recoil/selectors';
 
 export default function Store() {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const filteredProducts = useRecoilValue(filteredProductsSelector);
-  const { fetchProducts } = useProduct();
-
-  useEffect(() => {
-    const loadProducts = async () => {
-      try {
-        await fetchProducts();
-        setLoading(false);
-      } catch (err) {
-        setError('Failed to load products');
-        setLoading(false);
-      }
-    };
-
-    loadProducts();
-  }, [fetchProducts]);
-
-  if (loading) return <Loader />;
-  if (error) return <div className="error-message">{error}</div>;
+  // Fall back to local products if Firebase/Supabase has none loaded
+  const displayProducts = filteredProducts.length > 0 ? filteredProducts : products;
 
   return (
     <section className='shop'>
       <Flyer />
-      {filteredProducts.length > 0 && <Dishes data={filteredProducts} />}
 
-      <h1 className="heading">Explore Brands</h1>
+      {displayProducts.length > 0 && <Dishes data={displayProducts.slice(0, 8)} />}
+
+      <div className="section-header">
+        <h3 className="sub-heading">Explore Brands</h3>
+        <h1>All Products</h1>
+      </div>
       <div className="container">
-        {filteredProducts.map(item => (
-          <PopularStoreItem data={{ ...item }} key={item.id} />
+        {displayProducts.map((item, i) => (
+          <motion.div
+            key={item.id}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: (i % 4) * 0.05 }}
+          >
+            <PopularStoreItem data={{ ...item }} />
+          </motion.div>
         ))}
       </div>
 
-      <h3 className="sub-heading">Discover Variety</h3>
-      <h1 className="heading">Popular Drinks</h1>
-      <div className="container">
-        {filteredProducts.map(item => (
-          <PopularStoreItem data={{ ...item }} key={item.id} />
-        ))}
+      <div className="section-header">
+        <h3 className="sub-heading">Discover Variety</h3>
+        <h1>Featured Items</h1>
       </div>
-
-      <h1 className="heading">Read Our Blogs</h1>
-      <div className="container blogs">
-        {filteredProducts.slice(0, 6).map(item => ( // Only show 6 blog items
-          <ProductItem product={{ ...item }} key={item.id} />
-        ))}
-      </div>
-
-      <h3 className="sub-heading">Discover Variety</h3>
-      <h1 className="heading">Popular Drinks</h1>
       <div className="container">
-        {filteredProducts.map(item => (
+        {displayProducts.slice(0, 6).map((item) => (
           <StoreItem data={{ ...item }} key={item.id} />
+        ))}
+      </div>
+
+      <div className="section-header">
+        <h3 className="sub-heading">Read Our Blogs</h3>
+        <h1>Trending Posts</h1>
+      </div>
+      <div className="container blogs">
+        {displayProducts.slice(0, 6).map((item) => (
+          <ProductItem product={{ ...item }} key={item.id} />
         ))}
       </div>
     </section>

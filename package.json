@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.1",
+    "@supabase/supabase-js": "^2.108.2",
     "firebase": "^10.11.0",
+    "framer-motion": "^12.42.0",
     "pure-react-carousel": "^1.32.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

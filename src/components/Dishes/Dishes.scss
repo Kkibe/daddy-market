@@ -1,68 +1,80 @@
-.dish {
-	padding: 1rem;
-	background: var(--white);
-	border-radius: 0.5rem;
-	border: 0.1rem solid rgba(0, 0, 0, 0.2);
-	box-shadow: var(--box-shadow);
-	position: relative;
-	overflow: hidden;
-	text-align: center;
-	.icon {
-		position: absolute;
-		top: 1.5rem;
-		background: var(--light-grey);
-		border-radius: 50%;
-		height: 3.5rem;
-		width: 3.5rem;
-		font-size: 2rem;
-		color: var(--black);
-		display: flex;
-		align-items: center;
-		justify-content: center;
+.dishes {
+	.container {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+		gap: 1.5rem;
+	}
 
-		&.heart {
-			left: -15rem;
+	.dish {
+		padding: 1.5rem;
+		text-align: center;
+
+		.icon {
+			position: absolute;
+			top: 1rem;
+			background: var(--white);
+			border-radius: 50%;
+			height: 3.5rem;
+			width: 3.5rem;
+			font-size: 1.5rem;
+			color: var(--black);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			box-shadow: var(--box-shadow);
+			border: none;
+			cursor: pointer;
+			z-index: 5;
+
+			&.heart { left: -15rem; }
+			&.eye { right: -15rem; }
+			&:hover { background: var(--green); color: var(--white); }
 		}
 
-		&.eye {
-			right: -15rem;
-		}
 		&:hover {
-			background: var(--green);
-			color: var(--white);
-		}
-	}
-
-	&:hover {
-		.heart {
-			left: 1.5rem;
+			.heart { left: 1rem; }
+			.eye { right: 1rem; }
 		}
 
-		.eye {
-			right: 1.5rem;
+		img {
+			width: 100%;
+			height: 16rem;
+			object-fit: cover;
+			border-radius: var(--radius-sm);
+			margin-bottom: 1rem;
 		}
-	}
 
-	img {
-		height: 20rem;
-		margin: 1rem 0;
-	}
-	h3 {
-		color: var(--black);
-		font-size: 2.5rem;
-	}
-	.stars {
-		padding: 1rem 0;
-		.star {
+		h3 {
+			color: var(--black);
 			font-size: 1.7rem;
-			color: var(--green);
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+			line-height: 1.4;
 		}
-	}
 
-	span {
-		color: var(--green);
-		font-weight: bolder;
-		margin-right: 1rem;
-		font-size: 2.5rem;
+		.dish-meta {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 1rem;
+
+			.dish-rating {
+				display: flex;
+				align-items: center;
+				gap: 0.3rem;
+				font-size: 1.3rem;
+				color: var(--light-color);
+			}
+
+			.dish-price {
+				color: var(--green);
+				font-weight: 700;
+				font-size: 1.6rem;
+			}
+		}
+
+		.btn {
+			width: 100%;
+		}
 	}
 }

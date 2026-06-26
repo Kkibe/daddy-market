@@ -1,54 +1,54 @@
 import { useState } from 'react';
-import './Dishes.scss';
-import { FaEye, FaShareAlt, FaStar, } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { FaEye, FaShareAlt, FaStar } from 'react-icons/fa';
 import ShareModal from '../ShareModal/ShareModal';
 
 export default function Dishes({ data }) {
   const toggleSingle = () => {
-    document.querySelector('.single').classList.toggle('active');
+    document.querySelector('.single')?.classList.toggle('active');
+  };
 
-  }
-  const returnRatings = (item) => {
-    let arrays = [];
-    for (let i = 0; i < item; i++) {
-      arrays.push(<FaStar className='star' key={i} />);
-    }
-    return arrays;
-  }
   const Dish = ({ item }) => {
     const [visible, setVisible] = useState(false);
-
     return (
-      <div className="dish">
-        {
-          visible && <ShareModal visible={visible} setVisible={setVisible} />
-        }
-        <a className="icon heart" onClick={() => setVisible(true)}><FaShareAlt /></a>
-        <a className="icon eye" onClick={toggleSingle}><FaEye /></a>
-        <img src={item.image} alt="" />
-        <h3>{item.description}</h3>
-        {/*<div className="stars">
-          {
-            item.ratings && returnRatings(item.ratings)
-          }
-        </div>*/}
-        <span>KSH {item.price}</span>
-        <a className='btn'>Add Cart</a>
-      </div>
-    )
-  }
+      <motion.div
+        className="dish card"
+        whileHover={{ y: -4 }}
+        transition={{ duration: 0.2 }}
+      >
+        {visible && <ShareModal visible={visible} setVisible={setVisible} />}
+        <button className="icon heart" onClick={() => setVisible(true)} aria-label="Share"><FaShareAlt /></button>
+        <button className="icon eye" onClick={toggleSingle} aria-label="Quick view"><FaEye /></button>
+        <img src={item.image} alt={item.title} loading="lazy" />
+        <h3>{item.title}</h3>
+        <div className="dish-meta">
+          <span className="dish-rating"><FaStar className="star" /> {item.rating || item.stars || '4.5'}</span>
+          <span className="dish-price">KSH {item.price.toLocaleString()}</span>
+        </div>
+        <a href="/shop" className='btn'>Add to Cart</a>
+      </motion.div>
+    );
+  };
+
   return (
     <section className='dishes' id='dishes'>
-      <h3 className="sub-heading">Explore Our Store</h3>
-      <h1>popular products</h1>
-
+      <div className="section-header">
+        <h3 className="sub-heading">Explore Our Store</h3>
+        <h1>Popular Products</h1>
+      </div>
       <div className="container">
-        {
-          data && data.map(item => {
-            return <Dish item={item} key={item.id} />
-          })
-        }
+        {data && data.map((item, i) => (
+          <motion.div
+            key={item.id}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: (i % 4) * 0.05 }}
+          >
+            <Dish item={item} />
+          </motion.div>
+        ))}
       </div>
     </section>
-  )
+  );
 }

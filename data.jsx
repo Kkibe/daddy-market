@@ -1,484 +1,255 @@
-import Image from './src/assets/logo.png';
 import { IoLogoFacebook, IoLogoInstagram, IoLogoWhatsapp } from 'react-icons/io';
 import { FaInstagram, FaTelegram } from 'react-icons/fa';
 import { PiXLogo } from 'react-icons/pi';
-import { BsInstagram } from 'react-icons/bs';
-import { FaX } from 'react-icons/fa6';
 
 export const appName = 'Daddy Market';
+
+const px = (id) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=600`;
 
 export const products = [
   {
     id: "1",
-    title: "50kg sack of rice",
-    description: "Natural Sweet Red Wine, Scottish 1992",
-    price: 500,
-    image: Image,//thumbnail
-
-
-    images: [""],
-    features: [
-      "Daily match predictions",
-      "Fixed Correct Score",
-      "20+ odds",
-    ],
-    colors: ["#059212", "#3e4d40ff"],
-    stock: 2,
-    categories: ["gin", "liquor", "dry"],//
+    title: "Premium Long Grain Rice 50kg",
+    description: "Natural long grain rice, perfect for everyday meals. Sourced from top farms.",
+    price: 5200,
+    image: px(1393382),
+    images: [px(1393382), px(1393380)],
+    features: ["50kg sack", "Long grain", "Naturally grown", "Premium quality"],
+    colors: ["#d4a373", "#fefae0"],
+    stock: 24,
+    categories: ["cereals", "staples"],
     stars: 4.5,
+    rating: "4.5",
   },
   {
     id: "2",
-    title: "50kg sack of rice",
-    description: "Natural Sweet Red Wine, Scottish 1992",
-    price: 500,
-    image: Image,//thumbnail
-
-    /*
-    images: [""],
-    features: [
-      "Daily match predictions",
-      "Fixed Correct Score",
-      "20+ odds",
-    ],
-    colors: ["#059212", "#3e4d40ff"],
-    stock: 2,
-    categories: ["gin", "liquor", "dry"],//
-    stars: 4.5,*/
+    title: "Fresh Red Onions 10kg",
+    description: "Farm-fresh red onions, great for cooking. Hand-picked and sorted.",
+    price: 850,
+    image: px(1306559),
+    images: [px(1306559)],
+    features: ["10kg net", "Farm fresh", "Long shelf life"],
+    colors: ["#c1121f", "#fdf0d5"],
+    stock: 40,
+    categories: ["vegetables", "fresh"],
+    stars: 4.2,
+    rating: "4.2",
   },
   {
     id: "3",
-    title: "50kg sack of rice",
-    description: "Natural Sweet Red Wine, Scottish 1992",
-    price: 500,
-    image: Image,//thumbnail
-
-    /*
-    images: [""],
-    features: [
-      "Daily match predictions",
-      "Fixed Correct Score",
-      "20+ odds",
-    ],
-    colors: ["#059212", "#3e4d40ff"],
-    stock: 2,
-    categories: ["gin", "liquor", "dry"],//
-    stars: 4.5,*/
+    title: "Pure Sunflower Cooking Oil 5L",
+    description: "Refined sunflower oil, cholesterol-free. Ideal for frying and baking.",
+    price: 1450,
+    image: px(33883),
+    images: [px(33883)],
+    features: ["5 litres", "Cholesterol free", "Refined", "Heart healthy"],
+    colors: ["#ffd60a", "#f1faee"],
+    stock: 30,
+    categories: ["pantry", "cooking"],
+    stars: 4.7,
+    rating: "4.7",
   },
   {
     id: "4",
-    title: "50kg sack of rice",
-    description: "Natural Sweet Red Wine, Scottish 1992",
-    price: 500,
-    image: Image,//thumbnail
-
-    /*
-    images: [""],
-    features: [
-      "Daily match predictions",
-      "Fixed Correct Score",
-      "20+ odds",
-    ],
-    colors: ["#059212", "#3e4d40ff"],
-    stock: 2,
-    categories: ["gin", "liquor", "dry"],//
-    stars: 4.5,*/
+    title: "Fresh Tomatoes Crate 20kg",
+    description: "Ripe red tomatoes, perfect for sauces and salads. Delivered fresh daily.",
+    price: 2400,
+    image: px(533280),
+    images: [px(533280)],
+    features: ["20kg crate", "Vine ripened", "Fresh daily"],
+    colors: ["#e63946", "#f1faee"],
+    stock: 18,
+    categories: ["vegetables", "fresh"],
+    stars: 4.3,
+    rating: "4.3",
   },
   {
     id: "5",
-    title: "50kg sack of rice",
-    description: "Natural Sweet Red Wine, Scottish 1992",
-    price: 500,
-    image: Image,//thumbnail
-
-    /*
-    images: [""],
-    features: [
-      "Daily match predictions",
-      "Fixed Correct Score",
-      "20+ odds",
-    ],
-    colors: ["#059212", "#3e4d40ff"],
-    stock: 2,
-    categories: ["gin", "liquor", "dry"],//
-    stars: 4.5,*/
+    title: "Whole Wheat Flour 25kg",
+    description: "Stone-milled whole wheat flour, rich in fiber. Great for bread and chapati.",
+    price: 1800,
+    image: px(1410533),
+    images: [px(1410533)],
+    features: ["25kg bag", "Stone milled", "High fiber", "Whole wheat"],
+    colors: ["#ddbea9", "#f7f1e3"],
+    stock: 22,
+    categories: ["cereals", "pantry"],
+    stars: 4.6,
+    rating: "4.6",
   },
   {
     id: "6",
-    title: "50kg sack of rice",
-    description: "Natural Sweet Red Wine, Scottish 1992",
-    price: 500,
-    image: Image,//thumbnail
-
-    /*
-    images: [""],
-    features: [
-      "Daily match predictions",
-      "Fixed Correct Score",
-      "20+ odds",
-    ],
-    colors: ["#059212", "#3e4d40ff"],
-    stock: 2,
-    categories: ["gin", "liquor", "dry"],//
-    stars: 4.5,*/
+    title: "Fresh Potatoes Sack 50kg",
+    description: "Grade A potatoes, versatile for boiling, frying, and baking.",
+    price: 3000,
+    image: px(2286776),
+    images: [px(2286776)],
+    features: ["50kg sack", "Grade A", "Versatile", "Locally grown"],
+    colors: ["#a98467", "#f3e9d9"],
+    stock: 15,
+    categories: ["vegetables", "staples"],
+    stars: 4.4,
+    rating: "4.4",
   },
   {
     id: "7",
-    title: "50kg sack of rice",
-    description: "Natural Sweet Red Wine, Scottish 1992",
-    price: 500,
-    image: Image,//thumbnail
-
-    /*
-    images: [""],
-    features: [
-      "Daily match predictions",
-      "Fixed Correct Score",
-      "20+ odds",
-    ],
-    colors: ["#059212", "#3e4d40ff"],
-    stock: 2,
-    categories: ["gin", "liquor", "dry"],//
-    stars: 4.5,*/
+    title: "Refined Sugar 25kg",
+    description: "Pure refined white sugar, perfect for beverages and baking.",
+    price: 2600,
+    image: px(1132048),
+    images: [px(1132048)],
+    features: ["25kg bag", "Refined", "Pure", "Granulated"],
+    colors: ["#f8f9fa", "#dee2e6"],
+    stock: 35,
+    categories: ["pantry", "staples"],
+    stars: 4.1,
+    rating: "4.1",
   },
   {
     id: "8",
-    title: "50kg sack of rice",
-    description: "Natural Sweet Red Wine, Scottish 1992",
-    price: 500,
-    image: Image,//thumbnail
-
-    /*
-    images: [""],
-    features: [
-      "Daily match predictions",
-      "Fixed Correct Score",
-      "20+ odds",
-    ],
-    colors: ["#059212", "#3e4d40ff"],
-    stock: 2,
-    categories: ["gin", "liquor", "dry"],//
-    stars: 4.5,*/
+    title: "Fresh Eggs Tray (30 pcs)",
+    description: "Farm-fresh free-range eggs, rich in protein. Delivered in protective trays.",
+    price: 480,
+    image: px(162712),
+    images: [px(162712)],
+    features: ["30 eggs", "Free range", "Farm fresh", "Grade A"],
+    colors: ["#f4a261", "#fefae0"],
+    stock: 50,
+    categories: ["dairy", "protein"],
+    stars: 4.8,
+    rating: "4.8",
   },
   {
     id: "9",
-    title: "50kg sack of rice",
-    description: "Natural Sweet Red Wine, Scottish 1992",
-    price: 500,
-    image: Image,//thumbnail
-
-    /*
-    images: [""],
-    features: [
-      "Daily match predictions",
-      "Fixed Correct Score",
-      "20+ odds",
-    ],
-    colors: ["#059212", "#3e4d40ff"],
-    stock: 2,
-    categories: ["gin", "liquor", "dry"],//
-    stars: 4.5,*/
+    title: "Dried Maize 90kg Bag",
+    description: "Dried maize grains, ideal for milling. Clean and well-sorted.",
+    price: 4100,
+    image: px(547333),
+    images: [px(547333)],
+    features: ["90kg bag", "Dried", "Well sorted", "Mill grade"],
+    colors: ["#e9c46a", "#f1faee"],
+    stock: 12,
+    categories: ["cereals", "staples"],
+    stars: 4.0,
+    rating: "4.0",
   },
   {
     id: "10",
-    title: "50kg sack of rice",
-    description: "Natural Sweet Red Wine, Scottish 1992",
-    price: 500,
-    image: Image,//thumbnail
-
-    /*
-    images: [""],
-    features: [
-      "Daily match predictions",
-      "Fixed Correct Score",
-      "20+ odds",
-    ],
-    colors: ["#059212", "#3e4d40ff"],
-    stock: 2,
-    categories: ["gin", "liquor", "dry"],//
-    stars: 4.5,*/
+    title: "Fresh Spinach Bunches (20)",
+    description: "Crisp leafy spinach, packed with iron. Harvested and delivered same day.",
+    price: 600,
+    image: px(2255925),
+    images: [px(2255925)],
+    features: ["20 bunches", "Iron rich", "Same-day harvest", "Leafy greens"],
+    colors: ["#2a9d8f", "#e9f5db"],
+    stock: 28,
+    categories: ["vegetables", "fresh"],
+    stars: 4.5,
+    rating: "4.5",
   },
   {
     id: "11",
-    title: "50kg sack of rice",
-    description: "Natural Sweet Red Wine, Scottish 1992",
-    price: 500,
-    image: Image,//thumbnail
-
-    /*
-    images: [""],
-    features: [
-      "Daily match predictions",
-      "Fixed Correct Score",
-      "20+ odds",
-    ],
-    colors: ["#059212", "#3e4d40ff"],
-    stock: 2,
-    categories: ["gin", "liquor", "dry"],//
-    stars: 4.5,*/
+    title: "Cooking Salt 10kg",
+    description: "Iodized table salt, essential for every kitchen. Fine granulated.",
+    price: 350,
+    image: px(84751),
+    images: [px(84751)],
+    features: ["10kg", "Iodized", "Fine granulated", "Food grade"],
+    colors: ["#e9ecef", "#f8f9fa"],
+    stock: 60,
+    categories: ["pantry", "staples"],
+    stars: 4.2,
+    rating: "4.2",
   },
   {
     id: "12",
-    title: "50kg sack of rice",
-    description: "Natural Sweet Red Wine, Scottish 1992",
-    price: 500,
-    image: Image,//thumbnail
-
-    /*
-    images: [""],
-    features: [
-      "Daily match predictions",
-      "Fixed Correct Score",
-      "20+ odds",
-    ],
-    colors: ["#059212", "#3e4d40ff"],
-    stock: 2,
-    categories: ["gin", "liquor", "dry"],//
-    stars: 4.5,*/
+    title: "Fresh Bananas Bunch (15kg)",
+    description: "Sweet ripe bananas, naturally ripened. Great for snacking and smoothies.",
+    price: 900,
+    image: px(2872750),
+    images: [px(2872750)],
+    features: ["15kg bunch", "Naturally ripened", "Sweet", "Fresh"],
+    colors: ["#f4d35e", "#fef9ef"],
+    stock: 20,
+    categories: ["fruits", "fresh"],
+    stars: 4.6,
+    rating: "4.6",
   },
-  {
-    id: "13",
-    title: "50kg sack of rice",
-    description: "Natural Sweet Red Wine, Scottish 1992",
-    price: 500,
-    image: Image,//thumbnail
-
-    /*
-    images: [""],
-    features: [
-      "Daily match predictions",
-      "Fixed Correct Score",
-      "20+ odds",
-    ],
-    colors: ["#059212", "#3e4d40ff"],
-    stock: 2,
-    categories: ["gin", "liquor", "dry"],//
-    stars: 4.5,*/
-  },
-  {
-    id: "14",
-    title: "50kg sack of rice",
-    description: "Natural Sweet Red Wine, Scottish 1992",
-    price: 500,
-    image: Image,//thumbnail
-
-    /*
-    images: [""],
-    features: [
-      "Daily match predictions",
-      "Fixed Correct Score",
-      "20+ odds",
-    ],
-    colors: ["#059212", "#3e4d40ff"],
-    stock: 2,
-    categories: ["gin", "liquor", "dry"],//
-    stars: 4.5,*/
-  },
-  {
-    id: "15",
-    title: "50kg sack of rice",
-    description: "Natural Sweet Red Wine, Scottish 1992",
-    price: 500,
-    image: Image,//thumbnail
-
-    /*
-    images: [""],
-    features: [
-      "Daily match predictions",
-      "Fixed Correct Score",
-      "20+ odds",
-    ],
-    colors: ["#059212", "#3e4d40ff"],
-    stock: 2,
-    categories: ["gin", "liquor", "dry"],//
-    stars: 4.5,*/
-  },
-  {
-    id: "16",
-    title: "50kg sack of rice",
-    description: "Natural Sweet Red Wine, Scottish 1992",
-    price: 500,
-    image: Image,//thumbnail
-
-    /*
-    images: [""],
-    features: [
-      "Daily match predictions",
-      "Fixed Correct Score",
-      "20+ odds",
-    ],
-    colors: ["#059212", "#3e4d40ff"],
-    stock: 2,
-    categories: ["gin", "liquor", "dry"],//
-    stars: 4.5,*/
-  },
-  {
-    id: "17",
-    title: "50kg sack of rice",
-    description: "Natural Sweet Red Wine, Scottish 1992",
-    price: 500,
-    image: Image,//thumbnail
-
-    /*
-    images: [""],
-    features: [
-      "Daily match predictions",
-      "Fixed Correct Score",
-      "20+ odds",
-    ],
-    colors: ["#059212", "#3e4d40ff"],
-    stock: 2,
-    categories: ["gin", "liquor", "dry"],//
-    stars: 4.5,*/
-  },
-  {
-    id: "18",
-    title: "50kg sack of rice",
-    description: "Natural Sweet Red Wine, Scottish 1992",
-    price: 500,
-    image: Image,//thumbnail
-
-    /*
-    images: [""],
-    features: [
-      "Daily match predictions",
-      "Fixed Correct Score",
-      "20+ odds",
-    ],
-    colors: ["#059212", "#3e4d40ff"],
-    stock: 2,
-    categories: ["gin", "liquor", "dry"],//
-    stars: 4.5,*/
-  },
-  {
-    id: "19",
-    title: "50kg sack of rice",
-    description: "Natural Sweet Red Wine, Scottish 1992",
-    price: 500,
-    image: Image,//thumbnail
-
-    /*
-    images: [""],
-    features: [
-      "Daily match predictions",
-      "Fixed Correct Score",
-      "20+ odds",
-    ],
-    colors: ["#059212", "#3e4d40ff"],
-    stock: 2,
-    categories: ["gin", "liquor", "dry"],//
-    stars: 4.5,*/
-  }
-]
+];
 
 export const socialUrls = [
-  { id: 5, icon: <FaInstagram/>, url: "https://instagram.com/goalgenius.vip", title: "Instagram" },
+  { id: 5, icon: <FaInstagram />, url: "https://instagram.com/goalgenius.vip", title: "Instagram" },
   { id: 1, icon: <IoLogoFacebook />, url: "https://www.facebook.com/profile.php?id=61570224237201", title: "Facebook" },
-  { id: 4, icon: <PiXLogo />, url: "https://x.com/goalgeniusvip", title: "X(Twitter)" },
+  { id: 4, icon: <PiXLogo />, url: "https://x.com/goalgeniusvip", title: "X (Twitter)" },
   { id: 2, icon: <FaTelegram />, url: "https://t.me/bet365gurus", title: "Telegram" },
   { id: 3, icon: <IoLogoWhatsapp />, url: "https://whatsapp.com/channel/0029VayjRf71t90afonqcy0b", title: "WhatsApp" },
 ];
 
-
 export const testimonials = [
   {
     id: "1",
-    name: "John deo",
-    image: Image,
-    comment: "Lorem ipsum dolo sit amet. Lorem ipsum dolo sit amet. Lorem ipsum dolo sit amet.",
-    stars: 4.5
+    name: "Grace Wanjiku",
+    comment: "Daddy Market delivers fresh produce right to my door. The quality is consistently excellent and prices are fair.",
+    stars: 4.5,
   },
   {
     id: "2",
-    name: "John deo",
-    image: Image,
-    comment: "Lorem ipsum dolo sit amet. Lorem ipsum dolo sit amet. Lorem ipsum dolo sit amet.",
-    stars: 4.5
+    name: "Peter Kamau",
+    comment: "I order my monthly groceries here. Fast delivery and the M-Pesa checkout is so convenient.",
+    stars: 5,
   },
   {
-    id: "1",
-    name: "John deo",
-    image: Image,
-    comment: "Lorem ipsum dolo sit amet. Lorem ipsum dolo sit amet. Lorem ipsum dolo sit amet.",
-    stars: 4.5
+    id: "3",
+    name: "Aisha Mohammed",
+    comment: "Great variety of fresh vegetables and staples. The 50kg rice sack is a great deal for my family.",
+    stars: 4.5,
   },
   {
-    id: "1",
-    name: "John deo",
-    image: Image,
-    comment: "Lorem ipsum dolo sit amet. Lorem ipsum dolo sit amet. Lorem ipsum dolo sit amet.",
-    stars: 4.5
-  }
-]
+    id: "4",
+    name: "Brian Otieno",
+    comment: "Reliable service and quality products. My go-to for bulk grocery shopping in Nairobi.",
+    stars: 5,
+  },
+];
 
 export const faqs = [
   {
     id: "1",
-    question: "Lorem ipsum dolo sit amet.",
-    answer: "Lorem ipsum dolo sit amet."
+    question: "How long does delivery take?",
+    answer: "Orders within Nairobi are delivered within 24 hours. For other regions, delivery takes 2-3 business days depending on your location.",
   },
   {
-    id: "1",
-    question: "Lorem ipsum dolo sit amet.",
-    answer: "Lorem ipsum dolo sit amet."
+    id: "2",
+    question: "What payment methods do you accept?",
+    answer: "We accept M-Pesa, bank transfers, and card payments (Visa, Mastercard). You can choose to pay 50% upfront or the full amount at checkout.",
   },
   {
-    id: "1",
-    question: "Lorem ipsum dolo sit amet.",
-    answer: "Lorem ipsum dolo sit amet."
+    id: "3",
+    question: "Can I return damaged or spoiled items?",
+    answer: "Yes. If you receive damaged or spoiled items, contact us within 24 hours of delivery with a photo, and we will arrange a replacement or refund.",
   },
   {
-    id: "1",
-    question: "Lorem ipsum dolo sit amet.",
-    answer: "Lorem ipsum dolo sit amet."
+    id: "4",
+    question: "Do you offer bulk discounts?",
+    answer: "Yes! For orders above KES 20,000, we offer a 5% discount. Contact our support team for custom bulk pricing on large orders.",
   },
   {
-    id: "1",
-    question: "Lorem ipsum dolo sit amet.",
-    answer: "Lorem ipsum dolo sit amet."
+    id: "5",
+    question: "Which areas do you deliver to?",
+    answer: "We currently deliver across Nairobi and its environs including Kangemi, Ndumbuini, Uthiru, and the CBD. We are expanding to more regions soon.",
   },
   {
-    id: "1",
-    question: "Lorem ipsum dolo sit amet.",
-    answer: "Lorem ipsum dolo sit amet."
-  }
-]
+    id: "6",
+    question: "How do I track my order?",
+    answer: "Once your order is placed, you will receive a confirmation with your order ID. You can track the status of your order through your profile page.",
+  },
+];
 
 export const categories = [
-  {
-    id: 1,
-    title: "Cereals",
-    image: Image,
-    link: "https://www.oaks.delivery/"
-  },
-  {
-    id: 2,
-    title: "Dairy",
-    image: Image,
-    link: "https://www.oaks.delivery/"
-  },
-  {
-    id: 3,
-    title: "Fruits",
-    image: Image,
-    link: "https://www.oaks.delivery/"
-  },
-  {
-    id: 4,
-    title: "Vegetables",
-    image: Image,
-    link: "https://www.oaks.delivery/"
-  },
-  {
-    id: 5,
-    title: "Protein",
-    image: Image,
-    link: "https://www.oaks.delivery/"
-  },
-  {
-    id: 6,
-    title: "Other",
-    image: Image,
-    link: "https://www.oaks.delivery/"
-  },
-]
+  { id: 1, title: "Cereals", image: px(1393382), link: "/shop" },
+  { id: 2, title: "Dairy", image: px(162712), link: "/shop" },
+  { id: 3, title: "Fruits", image: px(2872750), link: "/shop" },
+  { id: 4, title: "Vegetables", image: px(533280), link: "/shop" },
+  { id: 5, title: "Protein", image: px(2286776), link: "/shop" },
+  { id: 6, title: "Pantry", image: px(33883), link: "/shop" },
+];

@@ -1,8 +1,33 @@
-.not-found{
-    width: inherit;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-direction: column;
+.not-found {
+	width: 100%;
+	min-height: 70vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 1.5rem;
+	text-align: center;
+	padding: 2rem;
+
+	.error-code {
+		font-size: 8rem;
+		color: var(--green);
+		font-weight: 800;
+		padding: 0;
+		line-height: 1;
+	}
+
+	.sub-heading {
+		font-size: 2rem;
+	}
+
+	p {
+		font-size: 1.6rem;
+		color: var(--light-color);
+		max-width: 400px;
+	}
+
+	.btn {
+		margin-top: 1rem;
+	}
 }

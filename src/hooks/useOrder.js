@@ -2,12 +2,12 @@ import { useRecoilState } from 'recoil';
 import { ordersState } from '../recoil/atoms';
 import { orderService } from '../../firebase';
 import { useNotification } from './useNotification';
-import { useCartActions} from './useCartActions';
+import { useCartActions } from './useCartActions';
 
 export const useOrder = () => {
     const [orders, setOrders] = useRecoilState(ordersState);
     const { showNotification } = useNotification();
-    const { cart, clearCart } = useCart();
+    const { cart, clearCart } = useCartActions();
 
     const createOrder = async (orderData) => {
         try {

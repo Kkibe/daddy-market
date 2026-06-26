@@ -18,12 +18,11 @@ import LoginForm from './pages/Auth/LoginForm';
 import RegisterForm from './pages/Auth/RegisterForm';
 import Cart from './pages/Cart/Cart';
 import NotFound from './pages/NotFound/NotFound';
-import Order from './pages/Order/Order';
+import Checkout from './pages/Checkout/Checkout';
 import Single from './components/Single/Single';
 import Product from './pages/Product/Product';
 import Store from './pages/Store/Store';
 import { authService } from '../firebase';
-import ThanksModal from './components/ThanksModal/ThanksModal';
 
 const Layout = () => {
   return (
@@ -79,7 +78,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/checkout",
-        element: <Order />
+        element: <Checkout />
       },
     ]
   },
@@ -115,14 +114,10 @@ const AppWrapper = () => {
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [auth, setAuth] = useRecoilState(authState);
+  const [, setAuth] = useRecoilState(authState);
 
 
   useEffect(() => {
-    setTimeout(() => {
-      console.log("hello world!")
-  });
-
     // Set up auth state listener
     const unsubscribe = authService.onAuthChange((user) => {
       setAuth({

@@ -1,24 +1,21 @@
-.shop{
-    .container{
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
-        gap: 1.5rem;
+.shop {
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 1rem 1rem 3rem;
 
-        width: 100%;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        margin: 5px 0;
+	.section-header {
+		text-align: center;
+		margin: 3rem 0 2rem;
+		h1 { padding: 0.5rem 0; }
+	}
 
-        .green{
-            color: var(--green);
-        }
-    }
-    .blogs{
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
-        grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-        gap: 1.5rem;
-    }
+	.container {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+		gap: 1.5rem;
+	}
 
+	.blogs {
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	}
 }

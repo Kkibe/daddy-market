@@ -1,51 +1,55 @@
-.search-form{
+.search-form {
     position: fixed;
     top: -110%;
     left: 0;
     height: 100%;
     width: 100%;
     z-index: 1000;
-    background: rgba(0, 0, 0, .8);
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0 1rem;
-    &.active{
-        top: 0;
-    }
+    transition: top 0.4s ease;
 
-    input{
-        width: 50rem;
-        border-bottom: .1rem solid var(--white);
+    &.active { top: 0; }
+
+    input {
+        width: 100%;
+        max-width: 50rem;
+        border-bottom: 2px solid var(--white);
         padding: 1rem 0;
-        font-size: 3rem;
-        text-transform: none;
+        font-size: 2.5rem;
         color: var(--white);
         background: none;
-        &::placeholder{
-            color: var(--light-grey);
-        }
-        &::-webkit-search-cancel-button{
-            -webkit-appearance: none;
-        }
+        border-top: none;
+        border-left: none;
+        border-right: none;
+
+        &::placeholder { color: rgba(255, 255, 255, 0.5); }
+        &:focus { outline: none; border-bottom-color: var(--green); }
+        &::-webkit-search-cancel-button { -webkit-appearance: none; }
     }
 
-    label{
+    label {
         color: var(--white);
         cursor: pointer;
-        font-size: 3rem;
+        font-size: 2.5rem;
+        margin-left: 1rem;
+        &:hover { color: var(--green); }
+    }
 
-        &:hover{
-            color: var(--green);
-        }
+    #close {
+        position: fixed;
+        top: 2rem;
+        right: 2rem;
+        color: var(--white);
+        background: rgba(255, 255, 255, 0.1);
+        &:hover { background: var(--green); }
     }
 }
 
-@media screen and (max-width: 768px){
-    .search-form{
-        input{
-            width: 90%;
-            margin: 0 1rem;
-        }
-    }
+@media screen and (max-width: 768px) {
+    .search-form input { font-size: 2rem; max-width: 90%; }
 }
