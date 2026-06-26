@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import './SliderTwo.scss';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { products } from '../../../data';
+import { NavLink } from 'react-router-dom';
 
 export default function SliderTwo() {
     const [slideIndex, setSlideIndex] = useState(0);
@@ -35,7 +36,7 @@ export default function SliderTwo() {
                             <hr />
                             <h2 className='heading'>{dish.title}</h2>
                             <p>{dish.description}</p>
-                            <a href="/shop" className='btn'>Shop Now</a>
+                            <NavLink to="/shop" className='btn'>Shop Now</NavLink>
                         </div>
                     </div>
                 ))}

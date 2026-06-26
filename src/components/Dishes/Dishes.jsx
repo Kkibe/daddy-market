@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaEye, FaShareAlt, FaStar } from 'react-icons/fa';
 import ShareModal from '../ShareModal/ShareModal';
+import { useCartActions } from '../../hooks/useCartActions';
 
 export default function Dishes({ data }) {
   const toggleSingle = () => {
@@ -10,23 +11,45 @@ export default function Dishes({ data }) {
 
   const Dish = ({ item }) => {
     const [visible, setVisible] = useState(false);
+    const { addToCart, cart, removeFromCart } = useCartActions();
+    const isInCart = cart.some(i => i.id === item.id);
+
+    const handleAddToCart = () => {
+      if (isInCart) {
+        removeFromCart(item.id);
+      } else {
+        addToCart({
+          id: item.id,
+          title: item.title,
+          description: item.description,
+          price: item.price,
+          image: item.image,
+          quantity: 1,
+        });
+      }
+    };
+
     return (
-      <motion.div
-        className="dish card"
-        whileHover={{ y: -4 }}
-        transition={{ duration: 0.2 }}
-      >
-        {visible && <ShareModal visible={visible} setVisible={setVisible} />}
-        <button className="icon heart" onClick={() => setVisible(true)} aria-label="Share"><FaShareAlt /></button>
-        <button className="icon eye" onClick={toggleSingle} aria-label="Quick view"><FaEye /></button>
-        <img src={item.image} alt={item.title} loading="lazy" />
-        <h3>{item.title}</h3>
-        <div className="dish-meta">
-          <span className="dish-rating"><FaStar className="star" /> {item.rating || item.stars || '4.5'}</span>
-          <span className="dish-price">KSH {item.price.toLocaleString()}</span>
-        </div>
-        <a href="/shop" className='btn'>Add to Cart</a>
-      </motion.div>
+      <div className="card-wrapper">
+        <ShareModal visible={visible} setVisible={setVisible} product={item} />
+        <motion.div
+          className="dish card"
+          whileHover={{ y: -4 }}
+          transition={{ duration: 0.2 }}
+        >
+          <button className="icon heart" onClick={() => setVisible(true)} aria-label="Share"><FaShareAlt /></button>
+          <button className="icon eye" onClick={toggleSingle} aria-label="Quick view"><FaEye /></button>
+          <img src={item.image} alt={item.title} loading="lazy" />
+          <h3>{item.title}</h3>
+          <div className="dish-meta">
+            <span className="dish-rating"><FaStar className="star" /> {item.rating || item.stars || '4.5'}</span>
+            <span className="dish-price">KSH {item.price.toLocaleString()}</span>
+          </div>
+          <button className={`btn ${isInCart ? 'in-cart' : ''}`} onClick={handleAddToCart}>
+            {isInCart ? 'In Cart' : 'Add to Cart'}
+          </button>
+        </motion.div>
+      </div>
     );
   };
 

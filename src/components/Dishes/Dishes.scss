@@ -75,6 +75,13 @@
 
 		.btn {
 			width: 100%;
+
+			&.in-cart {
+				background: var(--green-light);
+				color: var(--green);
+				font-weight: 600;
+				&:hover { background: #e74c3c; color: var(--white); }
+			}
 		}
 	}
 }
