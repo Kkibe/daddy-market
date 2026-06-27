@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { FaArrowRight, FaTruckFast, FaShieldHalved, FaTags } from 'react-icons/fa6';
 import ProductItem from '../../components/ProductCards/ProductItem';
 import PopularStoreItem from '../../components/ProductCards/PopularStoreItem';
 import ProductImage from '../../components/ProductImage';
@@ -10,27 +11,56 @@ import SliderTwo from '../../components/SliderTwo/SliderTwo';
 import './Home.scss';
 
 export default function Home() {
+  const featured = products[0];
+
   return (
     <section className='home'>
-      <div className="hero-slide">
+      <div className="hero">
+        <div className="hero-bg">
+          <div className="hero-glow" />
+        </div>
         <motion.div
           className="hero-image"
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
         >
-          <ProductImage src={products[0].image} alt={products[0].title} />
+          <ProductImage src={featured.image} alt={featured.title} />
+          <div className="hero-badge">
+            <FaTags /> Featured
+          </div>
         </motion.div>
         <motion.div
           className="hero-content"
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
         >
-          <span className="hero-price">KSH {products[0].price.toLocaleString()}</span>
-          <h1 className="hero-title">{products[0].title}</h1>
-          <p className="hero-desc">{products[0].description}</p>
-          <NavLink to="/shop" className="btn hero-cta">Shop Now</NavLink>
+          <span className="hero-tag">Fresh Groceries Delivered</span>
+          <h1 className="hero-title">{featured.title}</h1>
+          <p className="hero-desc">{featured.description}</p>
+          <div className="hero-actions">
+            <NavLink to="/shop" className="btn hero-cta">
+              Shop Now <FaArrowRight />
+            </NavLink>
+            <NavLink to={`/shop/${featured.id}`} className="btn hero-secondary">
+              View Details
+            </NavLink>
+          </div>
+          <div className="hero-stats">
+            <div className="stat">
+              <FaTruckFast className="stat-icon" />
+              <span>Fast Delivery</span>
+            </div>
+            <div className="stat">
+              <FaShieldHalved className="stat-icon" />
+              <span>Quality Guaranteed</span>
+            </div>
+            <div className="stat">
+              <FaTags className="stat-icon" />
+              <span>Best Prices</span>
+            </div>
+          </div>
         </motion.div>
       </div>
 

@@ -1,8 +1,16 @@
 import { useEffect, useState } from 'react';
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Outlet, useLocation } from 'react-router-dom';
 import { RecoilRoot, useRecoilState } from 'recoil';
 import { FaArrowUp } from 'react-icons/fa';
 import { authState } from './recoil/atoms';
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
 
 import Topnav from './components/Topnav/Topnav';
 import Search from './components/Search/Search';
@@ -27,6 +35,7 @@ import { authService } from '../firebase';
 const Layout = () => {
   return (
     <>
+      <ScrollToTop />
       <Topnav />
       <Search />
       <Outlet />
