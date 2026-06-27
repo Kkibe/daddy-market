@@ -4,6 +4,7 @@ import './SliderOne.scss';
 import { products } from '../../../data';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
+import ProductImage from '../ProductImage';
 
 export default function SliderOne() {
     const [slideIndex, setSlideIndex] = useState(0);
@@ -33,7 +34,7 @@ export default function SliderOne() {
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.4 }}
                         >
-                            <img src={dish.image} alt={dish.title} />
+                            <ProductImage src={dish.image} alt={dish.title} />
                         </motion.div>
                         <div className='slide-container'>
                             <span className="price-tag">KSH {dish.price.toLocaleString()}</span>

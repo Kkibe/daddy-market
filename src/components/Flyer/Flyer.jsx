@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { products } from '../../../data';
 import { NavLink } from 'react-router-dom';
+import ProductImage from '../ProductImage';
 import './Flyer.scss';
 
 export default function Flyer() {
@@ -13,7 +14,7 @@ export default function Flyer() {
       transition={{ duration: 0.5 }}
     >
       <div className="image">
-        <img src={featured.image} alt={featured.title} />
+        <ProductImage src={featured.image} alt={featured.title} />
       </div>
       <div className="content">
         <h2>{featured.title}</h2>

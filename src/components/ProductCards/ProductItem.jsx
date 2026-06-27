@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { FaCartPlus, FaCheckCircle } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 import { useCartActions } from '../../hooks/useCartActions';
+import ProductImage from '../ProductImage';
 
 export default function ProductItem({ product }) {
     const [isHovered, setIsHovered] = useState(false);
@@ -36,11 +37,10 @@ export default function ProductItem({ product }) {
             transition={{ duration: 0.2 }}
         >
             <div className="product-image-container image">
-                <img
+                <ProductImage
                     src={product.image}
                     alt={product.title}
                     className="product-image"
-                    loading="lazy"
                 />
             </div>
 

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaShareAlt, FaStar, FaShoppingBasket, FaCheck, FaHeart, FaRegHeart } from 'react-icons/fa';
 import ShareModal from '../ShareModal/ShareModal';
+import ProductImage from '../ProductImage';
 import { useWishlist } from '../../hooks/useWishlist';
 import { useCartActions } from '../../hooks/useCartActions';
 
@@ -52,7 +53,7 @@ export default function StoreItem({ data }) {
                 </button>
 
                 <div className="image-container image">
-                    <img src={data.image} alt={data.title} loading="lazy" />
+                    <ProductImage src={data.image} alt={data.title} />
                 </div>
 
                 <div className="content">

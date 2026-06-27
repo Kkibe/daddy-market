@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import ProductItem from '../../components/ProductCards/ProductItem';
 import PopularStoreItem from '../../components/ProductCards/PopularStoreItem';
+import ProductImage from '../../components/ProductImage';
 import { products, categories } from '../../../data';
 import { NavLink } from 'react-router-dom';
 import Menu from '../../components/Menu/Menu';
@@ -18,7 +19,7 @@ export default function Home() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <img src={products[0].image} alt={products[0].title} />
+          <ProductImage src={products[0].image} alt={products[0].title} />
         </motion.div>
         <motion.div
           className="hero-content"
@@ -48,11 +49,9 @@ export default function Home() {
             transition={{ delay: i * 0.05 }}
           >
             <NavLink to={category.link}>
-              <div className="card category-card">
-                <div className="image">
-                  <img src={category.image} alt={category.title} />
-                </div>
-                <div className="content">
+              <div className="category-card">
+                <ProductImage src={category.image} alt={category.title} />
+                <div className="overlay">
                   <h3>{category.title}</h3>
                 </div>
               </div>
