@@ -16,8 +16,11 @@
 	background: var(--white);
 	padding: 1.5rem;
 	border-radius: var(--radius);
-	width: calc(100% - 2rem);
-	max-width: 320px;
+	width: 320px;
+	max-width: calc(100vw - 2rem);
+	max-height: calc(100vh - 2rem);
+	overflow-y: auto;
+	box-sizing: border-box;
 	box-shadow: var(--box-shadow-lg);
 	z-index: 999;
 	border: 1px solid var(--border);
