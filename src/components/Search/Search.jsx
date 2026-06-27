@@ -9,7 +9,7 @@ export default function Search() {
 
   const handleCloseSearch = () => {
     document.querySelector('.search-form').classList.toggle('active');
-    setSearchQuery(''); // Clear search when closing
+    //setSearchQuery(''); // Clear search when closing
   };
 
   const handleSearchChange = (e) => {
