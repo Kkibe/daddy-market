@@ -5,10 +5,9 @@ import {
     productsState,
     userState,
     wishlistState,
-    ordersState,
-    searchState
+    ordersState
 } from './atoms';
-import { products as localProducts } from '../../data';
+import { orderService, productService } from '../../firebase';
 
 export const userNameSelector = selector({
     key: 'userNameSelector',
@@ -31,8 +30,8 @@ export const cartTotalSelector = selector({
     get: ({ get }) => {
         const cart = get(cartState);
         const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        const shipping = subtotal > 100 ? 0 : 10;
-        const discount = 0;
+        const shipping = subtotal > 100 ? 0 : 10; // Free shipping over $100
+        const discount = 0; // Can be calculated based on coupons
         const total = subtotal - discount + shipping;
         const totalQuantity = cart.reduce((count, item) => count + item.quantity, 0);
         const uniqueItemsCount = cart.length;
@@ -52,31 +51,26 @@ export const cartTotalSelector = selector({
 export const filteredProductsSelector = selector({
     key: 'filteredProductsSelector',
     get: ({ get }) => {
-        const remoteProducts = get(productsState);
+        const products = get(productsState);
         const filter = get(filterState);
-        const searchQuery = get(searchState).toLowerCase().trim();
 
-        const source = remoteProducts.length > 0 ? remoteProducts : localProducts;
-
-        return source
+        return products
             .filter(product =>
-                filter.category === 'all' || (product.categories && product.categories.includes(filter.category))
+                filter.category === 'all' || product.category === filter.category
             )
             .filter(product =>
                 product.price >= filter.priceRange[0] &&
                 product.price <= filter.priceRange[1]
             )
-            .filter(product => {
-                if (!searchQuery) return true;
-                const title = (product.title || '').toLowerCase();
-                const desc = (product.description || '').toLowerCase();
-                const cats = (product.categories || []).join(' ').toLowerCase();
-                return title.includes(searchQuery) || desc.includes(searchQuery) || cats.includes(searchQuery);
-            })
+            .filter(product =>
+                //product.description.toLowerCase().includes(filter.searchQuery.toLowerCase()) ||
+                //product.description.toLowerCase().includes(filter.searchQuery.toLowerCase())
+                product.description.includes(filter.searchQuery)
+            )
             .sort((a, b) => {
                 if (filter.sortBy === 'price-asc') return a.price - b.price;
                 if (filter.sortBy === 'price-desc') return b.price - a.price;
-                if (filter.sortBy === 'rating') return (b.rating || b.stars || 0) - (a.rating || a.stars || 0);
+                if (filter.sortBy === 'rating') return b.rating - a.rating;
                 if (filter.sortBy === 'newest') return new Date(b.createdAt) - new Date(a.createdAt);
                 return 0;
             });
@@ -86,7 +80,7 @@ export const filteredProductsSelector = selector({
 export const productSelector = selectorFamily({
     key: 'productSelector',
     get: (productId) => async () => {
-        const product = localProducts.find(p => p.id === productId);
+        const product = await productService.getProduct(productId);
         return product;
     },
 });
@@ -112,7 +106,7 @@ export const userOrdersSelector = selector({
     get: async ({ get }) => {
         const user = get(userState);
         if (!user) return [];
-        const orders = get(ordersState);
+        const orders = await orderService.getUserOrders(user.uid);
         return orders;
     },
 });

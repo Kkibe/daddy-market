@@ -1,74 +1,81 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { FaCartPlus, FaCheckCircle, FaShareAlt, FaStar } from "react-icons/fa";
 import ShareModal from '../ShareModal/ShareModal';
-import ProductImage from '../ProductImage';
 import { NavLink } from 'react-router-dom';
+import { useWishlist } from '../../hooks/useWishlist';
 import { useCartActions } from '../../hooks/useCartActions';
 
 export default function PopularStoreItem({ data }) {
     const [showShareModal, setShowShareModal] = useState(false);
-    const { addToCart, cart, removeFromCart } = useCartActions();
+    const { addToCart, cart, removeFromCart } = useCartActions(); //useCartActions();
+    const { toggleWishlistItem, isInWishlist } = useWishlist();
 
+    // Check if item is already in cart
     const isInCart = cart.some(item => item.id === data.id);
 
     const handleAddToCart = () => {
-        if (isInCart) {
-            removeFromCart(data.id);
-        } else {
-            addToCart({
-                id: data.id,
-                title: data.title,
-                description: data.description,
-                price: data.price,
-                image: data.image,
-                quantity: 1,
-            });
-        }
+        /*addToCart({
+            id: data.id,
+            title: data.description,
+            price: data.price,
+            image: data.image,
+            quantity: 1
+        });*/
+        isInCart ? removeFromCart : addToCart(data)
     };
 
     return (
-        <div className="card-wrapper popular-card-wrapper">
-            <ShareModal visible={showShareModal} setVisible={setShowShareModal} product={data} />
-            <motion.div
-                className="card popular-card"
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.2 }}
-            >
-                <div className="image">
-                    <ProductImage src={data.image} alt={data.title} />
+        <div className="card">
+            <ShareModal visible={showShareModal} onClose={() => setShowShareModal(false)} />
+
+            <div className="image">
+                <img src={data.image} alt={data.description} />
+                <a className='icon share' onClick={() => setShowShareModal(true)}><FaShareAlt /></a>
+                {/*<div} className="icon-group">
                     <button
-                        className='share-btn'
+                        className={`icon wishlist ${isInWishlist(data.id) ? 'active' : ''}`}
+                        onClick={() => toggleWishlistItem(data.id)}
+                        aria-label={isInWishlist(data.id) ? 'Remove from wishlist' : 'Add to wishlist'}
+                    >
+                        {isInWishlist(data.id) ? <FaHeart /> : <FaRegHeart />}
+                    </button>
+                    <button
+                        className="icon share"
                         onClick={() => setShowShareModal(true)}
-                        aria-label="Share"
+                        aria-label="Share product"
                     >
                         <FaShareAlt />
                     </button>
-                </div>
-
-                <div className="content">
-                    <div className="meta">
-                        <span className='rating trailing'>
-                            <FaStar className='star' /> {data.rating || data.stars || '4.5'}
-                        </span>
-                        <div className="price duration">KSH {data.price.toLocaleString()}</div>
-                    </div>
-
-                    <NavLink to={`/shop/${data.id}`} className="product-title">
-                        <h3>{data.title}</h3>
-                    </NavLink>
-
-                    <p>{data.description}</p>
-
-                    <button
-                        className={`add-to-cart ${isInCart ? 'in-cart' : ''}`}
-                        onClick={handleAddToCart}
-                        aria-label={isInCart ? 'Remove from cart' : 'Add to cart'}
+                    <NavLink
+                        to={`shop/${data.id}`}
+                        className="icon preview"
+                        aria-label="View product details"
                     >
-                        {isInCart ? <FaCheckCircle className='cart-icon' /> : <FaCartPlus className='cart-icon' />}
-                    </button>
+                        <FaEye />
+                    </NavLink>
+                </div>*/}
+            </div>
+
+            <div className="content">
+                <div className="meta">
+                    <span className='rating trailing'><FaStar className='star' /> {data.rating || '5.2K'}</span>
+                    <div className="price">KSH {data.price.toLocaleString()}</div>
                 </div>
-            </motion.div>
+
+                <NavLink to={`shop/${data.id}`} className="product-title">
+                    <h3>{data.description}</h3>
+                </NavLink>
+
+                <p className="product-description">{data.description}</p>
+
+                <a
+                    className={`add-to-cart add green ${isInCart ? 'in-cart' : ''}`}
+                    onClick={handleAddToCart}
+                    aria-label={isInCart ? 'Item in cart' : 'Add to cart'}
+                >
+                    {isInCart ?  <FaCartPlus className='cart-icon'/> : <FaCheckCircle className='cart-icon'/> }
+                </a>
+            </div>
         </div>
     );
 }

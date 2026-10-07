@@ -1,72 +1,46 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import './SliderOne.scss';
+import { useState } from 'react'
+import './SliderOne.scss'
 import { products } from '../../../data';
-import { FaArrowLeft, FaArrowRight, FaCartPlus, FaCheckCircle } from 'react-icons/fa';
-import { NavLink } from 'react-router-dom';
-import ProductImage from '../ProductImage';
-import { useCartActions } from '../../hooks/useCartActions';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 export default function SliderOne() {
     const [slideIndex, setSlideIndex] = useState(0);
-    const { addToCart, cart, removeFromCart } = useCartActions();
-    const maxIndex = products.length - 1;
-
     const handleClick = (direction) => {
         if (direction === "left") {
-            setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 0);
+            setSlideIndex(slideIndex > 0 ? slideIndex - 1 : (products.length - 1))
         } else {
-            setSlideIndex(slideIndex < maxIndex ? slideIndex + 1 : maxIndex);
+            setSlideIndex(slideIndex < (products.length - 1) ? slideIndex + 1 : 0)
         }
-    };
-
+    }
     return (
-        <div className="slider slider-one">
-            {slideIndex > 0 && (
-                <div className="arrow left" onClick={() => handleClick("left")} aria-label="Previous">
-                    <FaArrowLeft />
-                </div>
-            )}
-            <div className="slide-wrapper" style={{ transform: `translateX(-${slideIndex * 100}%)` }}>
-                {products.map((dish) => {
-                    const isInCart = cart.some(item => item.id === dish.id);
-                    return (
-                        <div className="slide" key={dish.id}>
-                            <motion.div
-                                className="image"
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.4 }}
-                            >
-                                <ProductImage src={dish.image} alt={dish.title} />
-                            </motion.div>
-                            <div className='slide-container'>
-                                <span className="price-tag">KSH {dish.price.toLocaleString()}</span>
-                                <h2 className='heading'>{dish.title}</h2>
-                                <p>{dish.description}</p>
-                                <div className="slide-actions">
-                                    <NavLink to={`/shop/${dish.id}`} className='btn view-btn'>View Details</NavLink>
-                                    <button
-                                        className={`btn cart-btn ${isInCart ? 'in-cart' : ''}`}
-                                        onClick={() => isInCart ? removeFromCart(dish.id) : addToCart({
-                                            id: dish.id, title: dish.title, description: dish.description,
-                                            price: dish.price, image: dish.image, quantity: 1,
-                                        })}
-                                    >
-                                        {isInCart ? <FaCheckCircle /> : <FaCartPlus />}
-                                        {isInCart ? 'In Cart' : 'Add to Cart'}
-                                    </button>
+
+        <div className="slider">
+            <div className="arrow" onClick={() => handleClick("left")}>
+                <FaArrowLeft />
+            </div>
+            <div className="slide-wrapper" style={{ transform: `translateX(${slideIndex * -100}vw)` }}>
+                {
+                    products && products.map(dish => {
+                        return (
+                            <div className="slide container">
+                                <div className="image">
+                                    <img src={dish.image} alt="" />
+                                </div>
+                                <div className='slide-container'>
+                                    <span>KSH {dish.price}</span>
+                                    <hr />
+                                    <h1 className='heading'>{dish.title}</h1>
+                                    <p>{dish.description}</p>
+                                    <a href="#" className='btn'>Shop Now</a>
                                 </div>
                             </div>
-                        </div>
-                    );
-                })}
+                        )
+                    })
+                }
             </div>
-            {slideIndex < maxIndex && (
-                <div className="arrow right" onClick={() => handleClick("right")} aria-label="Next">
-                    <FaArrowRight />
-                </div>
-            )}
+            <div className="arrow" onClick={() => handleClick("right")}>
+                <FaArrowRight />
+            </div>
         </div>
-    );
+    )
 }

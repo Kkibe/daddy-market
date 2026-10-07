@@ -1,118 +1,68 @@
-.dishes {
-	.container {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-		gap: 1.5rem;
-	}
+.dish {
+	padding: 1rem;
+	background: var(--white);
+	border-radius: 0.5rem;
+	border: 0.1rem solid rgba(0, 0, 0, 0.2);
+	box-shadow: var(--box-shadow);
+	position: relative;
+	overflow: hidden;
+	text-align: center;
+	.icon {
+		position: absolute;
+		top: 1.5rem;
+		background: var(--light-grey);
+		border-radius: 50%;
+		height: 3.5rem;
+		width: 3.5rem;
+		font-size: 2rem;
+		color: var(--black);
+		display: flex;
+		align-items: center;
+		justify-content: center;
 
-	.card-wrapper {
-		position: relative;
-	}
-
-	.dish {
-		padding: 1.5rem;
-		text-align: center;
-		position: relative;
-		overflow: visible;
-
-		.icon {
-			position: absolute;
-			top: 1rem;
-			background: var(--white);
-			border-radius: 50%;
-			height: 3.5rem;
-			width: 3.5rem;
-			font-size: 1.5rem;
-			color: var(--black);
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			box-shadow: var(--box-shadow);
-			border: none;
-			cursor: pointer;
-			z-index: 5;
-			opacity: 0;
-			transition: all 0.3s ease;
-
-			&.heart { left: 1rem; transform: translateX(-10px); }
-			&.eye { right: 1rem; transform: translateX(10px); }
-			&:hover { background: var(--green); color: var(--white); }
+		&.heart {
+			left: -15rem;
 		}
 
+		&.eye {
+			right: -15rem;
+		}
 		&:hover {
-			.heart { opacity: 1; transform: translateX(0); }
-			.eye { opacity: 1; transform: translateX(0); }
-		}
-
-		img {
-			width: 100%;
-			height: 16rem;
-			object-fit: cover;
-			border-radius: var(--radius-sm);
-			margin-bottom: 1rem;
-		}
-
-		h3 {
-			color: var(--black);
-			font-size: 1.7rem;
-			font-weight: 600;
-			margin-bottom: 0.5rem;
-			line-height: 1.4;
-		}
-
-		.dish-meta {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			margin-bottom: 1rem;
-
-			.dish-rating {
-				display: flex;
-				align-items: center;
-				gap: 0.3rem;
-				font-size: 1.3rem;
-				color: var(--light-color);
-			}
-
-			.dish-price {
-				color: var(--green);
-				font-weight: 700;
-				font-size: 1.6rem;
-			}
-		}
-
-		.btn {
-			width: 100%;
-			margin: 0 !important;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			gap: 0.5rem;
-
-			&.in-cart {
-				background: var(--green-light);
-				color: var(--green);
-				font-weight: 600;
-				&:hover { background: #e74c3c; color: var(--white); }
-			}
+			background: var(--green);
+			color: var(--white);
 		}
 	}
-}
 
-@media screen and (max-width: 450px) {
-	.dishes {
-		.container {
-			grid-template-columns: repeat(2, 1fr);
-			gap: 1rem;
+	&:hover {
+		.heart {
+			left: 1.5rem;
 		}
 
-		.dish {
-			padding: 1rem;
-
-			img { height: 12rem; }
-			h3 { font-size: 1.4rem; }
-			.dish-meta .dish-price { font-size: 1.4rem; }
-			.btn { font-size: 1.2rem; padding: 0.6rem; }
+		.eye {
+			right: 1.5rem;
 		}
+	}
+
+	img {
+		height: 20rem;
+		margin: 1rem 0;
+	}
+	h3 {
+		color: var(--black);
+		font-size: 2.5rem;
+	}
+	.stars {
+		padding: 1rem 0;
+		.star {
+			font-size: 1.7rem;
+			color: var(--green);
+		}
+	}
+
+	span {
+		color: var(--green);
+		font-weight: bolder;
+		margin-right: 1rem;
+		font-size: 2.5rem;
 	}
 }

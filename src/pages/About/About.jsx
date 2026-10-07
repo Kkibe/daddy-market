@@ -1,7 +1,9 @@
 import './About.css';
-import { FaCheckCircle, FaDollarSign, FaHeadset, FaShippingFast } from "react-icons/fa";
+import Image from '../../assets/logo.png';
+import { FaCheckCircle, FaDollarSign, FaFacebook, FaHeadset, FaInstagram, FaShippingFast, FaTwitter, FaYoutube } from "react-icons/fa";
 import Faq from '../../components/FaqItem/Faq';
 import Review from '../../components/Review/Review';
+import { FaXTwitter } from 'react-icons/fa6';
 import Newsletter from '../../components/Newsletter/Newsletter';
 import { NavLink } from 'react-router-dom';
 import { ShareSocial } from 'react-share-social';
@@ -12,50 +14,66 @@ export default function About() {
         <section className='about' id='about'>
             <div className="channel-info">
                 <div className="container">
-                    <h1>Daddy Market <FaCheckCircle className='check' /></h1>
+                    <div className="channel-icon">
+                        <img src={Image} alt="" />
+                    </div>
+
+                    <div className="channel-title">
+                        <h1>Daddy Market<FaCheckCircle className='check' /></h1>
+                    </div>
+
                     <div className="channel-subscribe">
                         <button className="subscribe-btn">Subscribed 100k</button>
+                        <button className="twitter-btn" aria-label="Enable Notifications"><FaXTwitter /></button>
                     </div>
                 </div>
-                <p>Welcome to Daddy Market. Shop fresh food products for all your household needs. Feel free to ask any question on the contact page and don't forget to subscribe to our newsletter.</p>
-                <span className="socials-row">
-                    {socialUrls.map(item => (
-                        <NavLink to={item.url} className='icon' target='_blank' title={item.title} key={item.id}>
-                            {item.icon}
-                        </NavLink>
-                    ))}
+                <p>Welcome all to Daddy Market. Here you will be able to shop food products for all your household needs. Feel free to ask any question in the contact page and don't forget to subscribe to our newsletter.</p>
+                <span>
+                    {
+                        socialUrls.map(item => {
+                            return <NavLink to={item.url} className='icon' target='_blank' title={item.title}>{ item.icon}</NavLink>
+                        })
+                    }
                 </span>
             </div>
-
             <div className="row">
+                <div className="image">
+                    <img src={Image} alt="" />
+                </div>
                 <div className="content">
-                    <h1 className="heading">About <span className="accent">Us</span></h1>
-                    <p>
-                        Daddy Market is your trusted online grocery store, delivering fresh produce,
-                        staples, and household essentials right to your doorstep. We source directly
-                        from local farmers to bring you the best quality at fair prices.
+                    <h1 className="heading">About <span style={{ color: "#9B5DE5" }}>us</span></h1>
+                    <p>Catering to the individualistic needs of each student.<br />
+                        Maria Auxilium Girls’ Hr. Sec. School is situated at 15G Damalwar Street, Kancheepuram. It is set in a
+                        conducive atmosphere suitable for the growth of young minds. At Maria Auxilium School every child is given
+                        individual attention to ensure their holistic development. At MAS , all the needs of the child are met with understanding and utmost care, be it physical, emotional, intellectual or spiritual.
                     </p>
                 </div>
             </div>
-
             <div className="row">
                 <div className="content">
-                    <h1 className="heading">Our <span className="accent">Mission</span></h1>
-                    <p>
-                        To make fresh, quality food accessible to every household through reliable
-                        delivery, fair pricing, and exceptional customer service. We support local
-                        farmers and promote sustainable agriculture.
+                    <h1 className="heading">Our <span style={{ color: "#9B5DE5" }}>mission</span></h1>
+                    <p>Catering to the individualistic needs of each student.<br />
+                        Maria Auxilium Girls’ Hr. Sec. School is situated at 15G Damalwar Street, Kancheepuram. It is set in a
+                        conducive atmosphere suitable for the growth of young minds. At Maria Auxilium School every child is given
+                        individual attention to ensure their holistic development. At MAS , all the needs of the child are met with understanding and utmost care, be it physical, emotional, intellectual or spiritual.
                     </p>
+                </div>
+                <div className="image">
+                    <img src={Image} alt="" />
                 </div>
             </div>
 
-            <div className="section-header">
-                <h3 className="sub-heading">About Us</h3>
-                <h1>Why Choose Us?</h1>
-            </div>
+
+            <h3 className="sub-heading">about us</h3>
+            <h1>why choose us?</h1>
 
             <div className="row">
                 <div className="content">
+                    <h3>best food in town</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit natus dolor cumque.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit natus dolor cumque.
+                    </p>
                     <div className="icons-container">
                         <div className="icons">
                             <FaShippingFast className='icon' />
@@ -63,35 +81,32 @@ export default function About() {
                         </div>
                         <div className="icons">
                             <FaDollarSign className='icon' />
-                            <span>Easy payments</span>
+                            <span>easy payments</span>
                         </div>
                         <div className="icons">
                             <FaHeadset className='icon' />
-                            <span>24/7 service</span>
+                            <span>27/7 service</span>
                         </div>
                     </div>
                     <NavLink to="/shop" className="btn">Go Shopping</NavLink>
                 </div>
             </div>
-
-            <div className="section-header">
-                <h1>Frequently Asked Questions</h1>
-            </div>
+            <h1>FAQ</h1>
             <div className="faqs-container">
-                {faqs.map((item, i) => (
-                    <Faq data={item} key={i} />
-                ))}
+                {
+                    faqs.map(item => {
+                        return <Faq data={item} />
+                    })
+                }
             </div>
-
             <Review />
             <Newsletter />
-
             <ShareSocial
                 url={window.location.origin}
-                socialTypes={['facebook', 'twitter', 'reddit', 'linkedin', 'telegram', 'whatsapp', 'email']}
-                title={'Share with friends'}
+                socialTypes={['facebook', 'twitter', 'reddit', 'linkedin', 'telegram', 'whatsapp', 'line','email']}
+                title={'share with friends'}
                 className="share-social"
             />
         </section>
-    );
+    )
 }

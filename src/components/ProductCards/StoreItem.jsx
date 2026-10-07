@@ -1,16 +1,15 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { FaShareAlt, FaStar, FaShoppingBasket, FaCheck, FaHeart, FaRegHeart } from 'react-icons/fa';
 import ShareModal from '../ShareModal/ShareModal';
-import ProductImage from '../ProductImage';
 import { useWishlist } from '../../hooks/useWishlist';
-import { useCartActions } from '../../hooks/useCartActions';
+import { useCartActions} from '../../hooks/useCartActions';
 
 export default function StoreItem({ data }) {
     const [showShareModal, setShowShareModal] = useState(false);
     const { addToCart, removeFromCart, cart } = useCartActions();
     const { toggleWishlistItem, isInWishlist } = useWishlist();
 
+    // Check if item is in cart
     const isInCart = cart.some(item => item.id === data.id);
 
     const handleCartAction = () => {
@@ -19,72 +18,105 @@ export default function StoreItem({ data }) {
         } else {
             addToCart({
                 id: data.id,
-                title: data.title,
-                description: data.description,
+                title: data.description,
                 price: data.price,
                 image: data.image,
-                quantity: 1,
+                quantity: 1
             });
         }
     };
 
     return (
-        <div className="card-wrapper store-card-wrapper">
-            <ShareModal visible={showShareModal} setVisible={setShowShareModal} product={data} />
-            <motion.div
-                className="card store-card"
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.2 }}
+        <div className="card">
+            <ShareModal
+                visible={showShareModal}
+                setVisible={() => setShowShareModal(false)}
+                product={data}
+            />
+            <a
+                className={`wishlist-btn icon heart ${isInWishlist(data.id) ? 'active' : ''}`}
+                onClick={() => toggleWishlistItem(data.id)}
+                aria-label={isInWishlist(data.id) ? 'Remove from wishlist' : 'Add to wishlist'}
             >
-                <button
-                    className={`wishlist-toggle ${isInWishlist(data.id) ? 'active' : ''}`}
-                    onClick={() => toggleWishlistItem(data.id, data.title)}
-                    aria-label={isInWishlist(data.id) ? 'Remove from wishlist' : 'Add to wishlist'}
-                >
-                    {isInWishlist(data.id) ? <FaHeart /> : <FaRegHeart />}
-                </button>
+                {isInWishlist(data.id) ? <FaHeart /> : <FaRegHeart />}
+            </a>
 
-                <button
-                    className="share-toggle"
-                    onClick={() => setShowShareModal(true)}
-                    aria-label="Share this product"
-                >
-                    <FaShareAlt />
-                </button>
+            <a
+                className="share-btn icon shar"
+                onClick={() => setShowShareModal(true)}
+                aria-label="Share this product"
+            >
+                <FaShareAlt />
+            </a>
+            <div className="image-container image">
+                <img
+                    src={data.image}
+                    alt={data.description}
+                    className="product-image"
+                    loading="lazy"
+                />
 
-                <div className="image-container image">
-                    <ProductImage src={data.image} alt={data.title} />
-                </div>
-
-                <div className="content">
-                    <div className="meta-info meta">
-                        <span className="rating trailing">
-                            <FaStar className="star-icon star" />
-                            {data.rating || data.stars || '4.5'}
-                        </span>
-                        <div className="price duration">KSH {data.price.toLocaleString()}</div>
-                    </div>
-
-                    <h3>{data.title}</h3>
-                    <p>{data.description}</p>
-
-                    {data.categories && (
-                        <div className="category-tags">
-                            {data.categories.map((category, index) => (
-                                <span key={index} className="tag hash">{category}</span>
-                            ))}
-                        </div>
-                    )}
+                {/*<div className="action-buttons">
+                    <button
+                        className={`wishlist-btn ${isInWishlist(data.id) ? 'active' : ''}`}
+                        onClick={() => toggleWishlistItem(data.id)}
+                        aria-label={isInWishlist(data.id) ? 'Remove from wishlist' : 'Add to wishlist'}
+                    >
+                        {isInWishlist(data.id) ? <FaHeart /> : <FaRegHeart />}
+                    </button>
 
                     <button
-                        className={`cart-btn btn ${isInCart ? 'in-cart' : 'add'}`}
-                        onClick={handleCartAction}
-                        aria-label={isInCart ? 'Remove from cart' : 'Add to cart'}
+                        className="share-btn"
+                        onClick={() => setShowShareModal(true)}
+                        aria-label="Share this product"
                     >
-                        {isInCart ? <FaCheck /> : <FaShoppingBasket />}
+                        <FaShareAlt />
                     </button>
+                </div>*/}
+            </div>
+
+            <div className="content">
+                <div className="meta-info meta">
+                    <span className="rating trailing">
+                        <FaStar className="star-icon star" />
+                        {data.stars}K
+                    </span>
+                    <div className="price duration">KSH {data.price.toLocaleString()}</div>
                 </div>
-            </motion.div>
+
+                {/*<NavLink to={`/product/${data.id}`} className="product-title">
+                    <h3>{data.description}</h3>
+                </NavLink>*/}
+                <h3>{data.description}</h3>
+
+                <p className="product-description">{data.description}</p>
+
+                {data.categories && (
+                    <div className="category-tags">
+                        {data.categories.map((category, index) => (
+                            <span key={index} className="tag hash">
+                                {category}
+                            </span>
+                        ))}
+                    </div>
+                )}
+
+                <button
+                    className={`cart-btn btn ${isInCart ? 'in-cart' : 'add'}`}
+                    onClick={handleCartAction}
+                    aria-label={isInCart ? 'Remove from cart' : 'Add to cart'}
+                >
+                    {isInCart ? (
+                        <>
+                            <FaCheck />
+                        </>
+                    ) : (
+                        <>
+                            <FaShoppingBasket />
+                        </>
+                    )}
+                </button>
+            </div>
         </div>
     );
 }

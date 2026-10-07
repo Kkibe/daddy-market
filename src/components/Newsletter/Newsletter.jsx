@@ -1,65 +1,34 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaPaperPlane, FaCheckCircle, FaExclamationTriangle } from 'react-icons/fa';
-import './Newsletter.scss';
+import "./Newsletter.scss"
+import { FaShare } from 'react-icons/fa';
 
-export default function Newsletter() {
+const Newsletter = () => {
     const [email, setEmail] = useState('');
     const [success, setSuccess] = useState(null);
     const [error, setError] = useState(null);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if (!email.match(mailformat)) {
-            setError('Please enter a valid email address');
-            return;
-        }
-        setSuccess('Thank you for subscribing!');
-        setEmail('');
-    };
+    }
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            if (error) setError(null);
-            if (success) setSuccess(null);
-        }, 3000);
-        return () => clearTimeout(timer);
+        setTimeout(() => {
+            error && setError(null);
+            success && setSuccess(null);
+        }, 2000);
     }, [success, error]);
-
     return (
         <section className='newsletter' id='subscribe'>
-            <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-            >Subscribe to our newsletter</motion.h2>
-            <p>Get the latest deals and updates delivered to your inbox</p>
+            <h2>Subscribe to our newsletter</h2>
+            <p>Subscribe Now</p>
             <form onSubmit={handleSubmit}>
-                <input
-                    type='email'
-                    name='email'
-                    placeholder='example@gmail.com'
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                <button type='submit' className='btn' title='submit'>
-                    <FaPaperPlane /> Subscribe
-                </button>
+                <input type='email' name='email' placeholder='example@gmail.com' title='enter email' onChange={(e) => setEmail(e.target.value)} value={email} required />
+                <button type='submit' className='btn' title='submit'><FaShare /></button>
             </form>
-            <AnimatePresence>
-                {error && (
-                    <motion.p className='error' initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                        <FaExclamationTriangle /> {error}
-                    </motion.p>
-                )}
-                {success && (
-                    <motion.p className='success' initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                        <FaCheckCircle /> {success}
-                    </motion.p>
-                )}
-            </AnimatePresence>
+            {error && <p className='error'>{error}!</p>}
+            {success && <p className='success'>Thank You For Subscribing!</p>}
         </section>
     );
 }
+
+export default Newsletter;

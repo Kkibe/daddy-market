@@ -1,16 +1,8 @@
 import { useEffect, useState } from 'react';
-import { createBrowserRouter, RouterProvider, Outlet, useLocation } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import { RecoilRoot, useRecoilState } from 'recoil';
 import { FaArrowUp } from 'react-icons/fa';
 import { authState } from './recoil/atoms';
-
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
-};
 
 import Topnav from './components/Topnav/Topnav';
 import Search from './components/Search/Search';
@@ -26,16 +18,16 @@ import LoginForm from './pages/Auth/LoginForm';
 import RegisterForm from './pages/Auth/RegisterForm';
 import Cart from './pages/Cart/Cart';
 import NotFound from './pages/NotFound/NotFound';
-import Checkout from './pages/Checkout/Checkout';
+import Order from './pages/Order/Order';
 import Single from './components/Single/Single';
 import Product from './pages/Product/Product';
 import Store from './pages/Store/Store';
 import { authService } from '../firebase';
+import ThanksModal from './components/ThanksModal/ThanksModal';
 
 const Layout = () => {
   return (
     <>
-      <ScrollToTop />
       <Topnav />
       <Search />
       <Outlet />
@@ -87,7 +79,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/checkout",
-        element: <Checkout />
+        element: <Order />
       },
     ]
   },
@@ -123,10 +115,14 @@ const AppWrapper = () => {
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [, setAuth] = useRecoilState(authState);
+  const [auth, setAuth] = useRecoilState(authState);
 
 
   useEffect(() => {
+    setTimeout(() => {
+      console.log("hello world!")
+  });
+
     // Set up auth state listener
     const unsubscribe = authService.onAuthChange((user) => {
       setAuth({
