@@ -7,20 +7,24 @@ import { NavLink } from 'react-router-dom';
 
 export default function SliderOne() {
     const [slideIndex, setSlideIndex] = useState(0);
+    const maxIndex = products.length - 1;
+
     const handleClick = (direction) => {
         if (direction === "left") {
-            setSlideIndex(slideIndex > 0 ? slideIndex - 1 : (products.length - 1));
+            setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 0);
         } else {
-            setSlideIndex(slideIndex < (products.length - 1) ? slideIndex + 1 : 0);
+            setSlideIndex(slideIndex < maxIndex ? slideIndex + 1 : maxIndex);
         }
     };
 
     return (
         <div className="slider slider-one">
-            <div className="arrow" onClick={() => handleClick("left")} aria-label="Previous">
-                <FaArrowLeft />
-            </div>
-            <div className="slide-wrapper" style={{ transform: `translateX(${slideIndex * -100}%)` }}>
+            {slideIndex > 0 && (
+                <div className="arrow" onClick={() => handleClick("left")} aria-label="Previous">
+                    <FaArrowLeft />
+                </div>
+            )}
+            <div className="slide-wrapper" style={{ transform: `translateX(-${slideIndex * 100}%)` }}>
                 {products.map((dish) => (
                     <div className="slide" key={dish.id}>
                         <motion.div
@@ -41,9 +45,11 @@ export default function SliderOne() {
                     </div>
                 ))}
             </div>
-            <div className="arrow" onClick={() => handleClick("right")} aria-label="Next">
-                <FaArrowRight />
-            </div>
+            {slideIndex < maxIndex && (
+                <div className="arrow" onClick={() => handleClick("right")} aria-label="Next">
+                    <FaArrowRight />
+                </div>
+            )}
         </div>
     );
 }

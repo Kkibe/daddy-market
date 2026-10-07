@@ -28,15 +28,15 @@ export default function StoreItem({ data }) {
     };
 
     return (
-        <div className="card-wrapper">
+        <div className="card-wrapper store-card-wrapper">
             <ShareModal visible={showShareModal} setVisible={setShowShareModal} product={data} />
             <motion.div
-                className="card"
+                className="card store-card"
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.2 }}
             >
                 <button
-                    className={`wishlist-btn icon heart ${isInWishlist(data.id) ? 'active' : ''}`}
+                    className={`wishlist-toggle ${isInWishlist(data.id) ? 'active' : ''}`}
                     onClick={() => toggleWishlistItem(data.id, data.title)}
                     aria-label={isInWishlist(data.id) ? 'Remove from wishlist' : 'Add to wishlist'}
                 >
@@ -44,7 +44,7 @@ export default function StoreItem({ data }) {
                 </button>
 
                 <button
-                    className="share-btn icon share"
+                    className="share-toggle"
                     onClick={() => setShowShareModal(true)}
                     aria-label="Share this product"
                 >
