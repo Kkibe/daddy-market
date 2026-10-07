@@ -1,18 +1,25 @@
-import Image from '../../assets/logo.png';
+import { motion } from 'framer-motion';
+import { products } from '../../../data';
 import './Flyer.scss';
 
 export default function Flyer() {
+  const featured = products[5];
   return (
-      <div className="flyer">
-        <div className="image">
-          <img src={Image} alt="fl" />
-        </div>
-        <div className="content">
-          <h1>White Potatoes, 1 sack</h1>
-          <span>Special Offer @3000 ksh</span>
-          <p>Hurry up!</p>
-          <a href="#" className='btn'>order now</a>
-        </div>
+    <motion.div
+      className="flyer"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="image">
+        <img src={featured.image} alt={featured.title} />
       </div>
-  )
+      <div className="content">
+        <h2>{featured.title}</h2>
+        <span className="offer">Special Offer @ KSH {featured.price.toLocaleString()}</span>
+        <p>Limited stock available</p>
+        <a href="/shop" className='btn'>Order Now</a>
+      </div>
+    </motion.div>
+  );
 }

@@ -1,76 +1,85 @@
 .footer {
+	background: var(--white);
+	border-top: 1px solid var(--border);
+	padding: 3rem 1rem 0;
+	margin-top: 2rem;
+
 	.container {
+		max-width: 1200px;
+		margin: 0 auto;
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-		gap: 1.5rem;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 2rem;
 
 		.wrapper {
-			padding: 0.5rem 0;
-			font-size: 2.5rem;
-			color: var(--black);
+			font-size: 1.5rem;
+
+			h3 {
+				color: var(--black);
+				font-size: 1.7rem;
+				font-weight: 600;
+				margin-bottom: 1rem;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+			}
 
 			a {
 				display: block;
 				padding: 0.5rem 0;
 				color: var(--light-color);
-				font-size: 1.7rem;
-				margin-top: 5px;
-				&:hover {
-					color: var(--green);
-					text-decoration: underline;
-				}
+				font-size: 1.4rem;
+				transition: color 0.2s;
+				&:hover { color: var(--green); padding-left: 0.5rem; }
 			}
 
-			span {
+			.socials {
 				display: flex;
-				width: 100%;
-				align-items: center;
-				justify-content: space-evenly;
+				gap: 0.8rem;
+				margin-top: 1rem;
 
 				a {
 					width: 4rem;
 					height: 4rem;
 					cursor: pointer;
-					font-size: 2.5rem;
+					font-size: 1.8rem;
 					color: var(--black);
 					border-radius: 50%;
 					background: var(--light-grey);
 					display: flex;
 					align-items: center;
 					justify-content: center;
+					padding: 0;
+					transition: all var(--transition);
 
 					&:hover {
 						color: var(--white);
 						background: var(--green);
+						transform: translateY(-3px);
+						padding-left: 0;
 					}
 				}
 			}
 		}
 	}
+
 	.credit {
 		text-align: center;
-		border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
-		font-size: 2rem;
-		color: var(--black);
-		padding: 0.5rem;
-		padding-top: 1.5rem;
-		margin-top: 1.5rem;
+		border-top: 1px solid var(--border);
+		font-size: 1.4rem;
+		color: var(--light-color);
+		padding: 1.5rem;
+		margin-top: 2rem;
 
-		span {
-			color: var(--green);
-		}
+		span { color: var(--green); font-weight: 600; }
 	}
 }
 
 @media screen and (max-width: 605px) {
 	.footer .container {
-		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		gap: 1rem; /* Only need to define this once */
+		gap: 1.5rem;
 	}
-
-	/* Target the last .wrapper and make it span full width */
 	.footer .wrapper:last-child {
-		grid-column: 1 / -1; /* Spans from first to last column */
+		grid-column: 1 / -1;
 	}
 }

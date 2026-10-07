@@ -1,32 +1,78 @@
-.contact{
-    width: inherit;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.contact {
+	width: 100%;
+	min-height: 70vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 2rem 1rem;
 
-    form{
-        display: flex;
-        flex-direction: column;
-        padding: 2vw 2vw;
-        width: 100%;
-        max-width: 600px;
-        border-radius: 10px;
-        margin: 5px;
-        input, textarea{
-            max-width: 100%;
-            border: 0;
-            margin: 10px 0;
-            padding: 20px;
-            outline: none;
-            font-size: 16px;
-            border: .1rem solid rgba(0, 0, 0, .2);
-        }
-        
-        p{
-            margin: 20px 0;
-        }
-    }
+	form {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		max-width: 600px;
+		background: var(--white);
+		border-radius: var(--radius);
+		box-shadow: var(--box-shadow);
+		padding: 2.5rem;
+
+		h1 {
+			text-align: left;
+			font-size: 2.4rem;
+			padding-bottom: 0.5rem;
+		}
+
+		.contact-intro {
+			font-size: 1.4rem;
+			color: var(--light-color);
+			margin-bottom: 1.5rem;
+			line-height: 1.6;
+		}
+
+		input, textarea {
+			width: 100%;
+			margin: 0.8rem 0;
+			padding: 1.2rem 1.4rem;
+			font-size: 1.5rem;
+			border: 1.5px solid var(--border);
+			border-radius: var(--radius-sm);
+			color: var(--black);
+			background: var(--white);
+			transition: border-color 0.2s, box-shadow 0.2s;
+			font-family: inherit;
+
+			&:focus {
+				outline: none;
+				border-color: var(--green);
+				box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.12);
+			}
+		}
+
+		textarea { resize: vertical; min-height: 120px; }
+
+		.btn {
+			width: 100%;
+			margin-top: 1rem;
+			padding: 1.3rem;
+			font-size: 1.6rem;
+			&:disabled { opacity: 0.6; cursor: not-allowed; }
+		}
+
+		.error, .success {
+			display: flex;
+			align-items: center;
+			gap: 0.6rem;
+			padding: 1rem 1.2rem;
+			border-radius: var(--radius-sm);
+			font-size: 1.4rem;
+			margin-top: 1rem;
+		}
+
+		.error { background: #fdf0f0; color: #e74c3c; }
+		.success { background: var(--green-light); color: var(--green); }
+	}
 }
 
-
+@media screen and (max-width: 600px) {
+	.contact form { padding: 1.5rem; }
+}

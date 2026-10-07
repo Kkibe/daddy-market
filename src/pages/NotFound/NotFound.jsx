@@ -1,13 +1,19 @@
+import { motion } from 'framer-motion';
+import { NavLink } from 'react-router-dom';
 import './NotFound.scss';
 
 export default function NotFound() {
   return (
-    <div className='not-found'>
-        <h1>404 Error</h1>
-        <h2 className='sub-heading'>PAGE NOT FOUND</h2>
-        <button onClick={() => {
-          window.history.back();
-        }} className='btn'>Go Back &raquo;</button>
-    </div>
-  )
+    <motion.div
+      className='not-found'
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.4 }}
+    >
+      <h1 className="error-code">404</h1>
+      <h2 className='sub-heading'>Page Not Found</h2>
+      <p>The page you're looking for doesn't exist or has been moved.</p>
+      <NavLink to="/" className='btn'>Go Home</NavLink>
+    </motion.div>
+  );
 }

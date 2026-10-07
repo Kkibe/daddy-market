@@ -1,43 +1,53 @@
 .menu {
 	.container {
-		.card {
-			.image {
-				padding: 0.5rem;
-				.icon:hover {
-					background: var(--green);
-					color: var(--white);
-				}
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+		gap: 1.5rem;
+	}
+
+	.card {
+		.image {
+			padding: 1rem;
+			position: relative;
+
+			.icon {
+				top: 1.5rem;
+				right: 1.5rem;
+				display: flex;
+				opacity: 0;
+				transition: all 0.3s;
+				&:hover { background: var(--green); color: var(--white); }
+			}
+		}
+
+		&:hover .icon { opacity: 1; }
+
+		.content {
+			padding: 0 1.5rem 1.5rem;
+
+			h3 {
+				color: var(--black);
+				font-size: 1.7rem;
+				font-weight: 600;
+				margin-bottom: 0.5rem;
 			}
 
-			.content {
-				padding: 0.8rem;
-				padding-top: 0;
-				.stars {
-					padding: 1rem;
-					.star {
-						font-size: 1.7rem;
-						color: var(--green);
-					}
-				}
-				h3 {
-					color: var(--black);
-					font-size: 2.5rem;
-				}
-				.card-footer {
-					width: 100%;
-					display: flex;
-					align-items: center;
-					justify-content: space-between;
-					.price {
-						color: var(--green);
-						font-size: 1.8rem;
-					}
-				}
-			}
+			.card-footer {
+				width: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				margin-top: 1rem;
 
-			&:hover {
-				.icon {
-					display: flex;
+				.price {
+					color: var(--green);
+					font-size: 1.6rem;
+					font-weight: 700;
+				}
+
+				.btn {
+					padding: 0.7rem 1.5rem;
+					font-size: 1.3rem;
 				}
 			}
 		}

@@ -1,173 +1,71 @@
 .review {
+	max-width: 1200px;
+	margin: 0 auto;
+
+	.section-header {
+		text-align: center;
+		margin-bottom: 2rem;
+		h1 { padding: 0.5rem 0; }
+	}
+
 	.review-slider {
 		.wrapper {
-			width: 100%;
 			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 			gap: 1.5rem;
-			overflow-x: scroll;
-			height: fit-content;
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			padding: 5px;
+		}
+
+		.slide {
+			background: var(--white);
+			padding: 2rem;
+			box-shadow: var(--box-shadow);
+			border: 1px solid var(--border);
+			border-radius: var(--radius);
 			position: relative;
-			scroll-margin: 1px;
+			transition: all var(--transition);
 
-			&::-webkit-scrollbar {
-				width: 1px;
-				display: none;
-			}
-			&::-webkit-scrollbar-track {
-				display: none;
-			}
-			&::-webkit-scrollbar-thumb {
-				background: var(--black);
-				border-radius: 2px;
+			&:hover { box-shadow: var(--box-shadow-lg); transform: translateY(-3px); }
+
+			.quote-icon {
+				position: absolute;
+				top: 1.5rem;
+				right: 1.5rem;
+				font-size: 2.5rem;
+				color: var(--green-light);
 			}
 
-			.slide {
-				width: 100%;
-				padding: 1.5rem;
-				box-shadow: var(--box-shadow);
-				border: 0.1rem solid rgba(0, 0, 0, 0.2);
-				border-radius: 0.5rem;
-				position: relative;
-				min-width: 280px;
+			.user {
+				display: flex;
+				gap: 1rem;
+				align-items: center;
+				padding-bottom: 1rem;
 
-				span {
-					position: absolute;
-					top: 0.5rem;
-					right: 0.5rem;
-					font-size: 3rem;
-					color: #ccc;
-				}
-
-				.user {
-					display: flex;
-					gap: 1rem;
-					align-items: center;
-					padding-bottom: 1rem;
-
-					img {
-						height: 5rem;
-						width: 5rem;
-						border-radius: 50%;
-						object-fit: cover;
-					}
-
+				.user-info {
 					h3 {
 						color: var(--black);
-						font-size: 2rem;
-						padding-bottom: 0.5rem;
+						font-size: 1.7rem;
+						font-weight: 600;
+						padding-bottom: 0.3rem;
 					}
 
-					.user-info{
-						p{
-							display: flex;
-							align-items: center;
-							justify-content: center;
-							gap: 5px;
-
-							.star{
-								color: #f8c441;
-							}
-						}
+					.rating {
+						display: flex;
+						align-items: center;
+						gap: 0.4rem;
+						font-size: 1.3rem;
+						color: var(--light-color);
+						padding: 0;
+						.star { color: #f8c441; }
 					}
 				}
 			}
+
+			.comment {
+				font-size: 1.4rem;
+				color: var(--light-color);
+				line-height: 1.6;
+				padding: 0;
+			}
 		}
 	}
-}
-
-@media screen and (max-width: 605px) {
-	.review-slider .wrapper .slide {
-		min-width: 100%;
-	}
-
-	//Smooth Infinite Loop (Marquee-like)
-	.review .wrapper {
-		display: flex;
-		overflow: hidden;
-	}
-
-	.review .slide {
-		flex: 0 0 100%;
-		animation: slide 10s infinite linear;
-	}
-
-	@keyframes slide {
-		0% {
-			transform: translateX(0);
-		}
-		100% {
-			transform: translateX(-100%);
-		}
-	}
-	//added
-	/*.review .wrapper {
-		animation: scrollHorizontal 5s linear infinite;
-		overflow-x: auto;
-		white-space: nowrap;
-	}
-
-	.review .slide {
-		display: inline-block;
-		white-space: normal;
-	}
-
-	@keyframes scrollHorizontal {
-		0% {
-			transform: translateX(0);
-		}
-		100% {
-			transform: translateX(-100%);
-		}
-	}
-
-	//Snap Scrolling (User-Controlled)
-	.review .wrapper {
-		scroll-snap-type: x mandatory;
-		overflow-x: auto;
-		display: flex;
-		gap: 1.5rem;
-	}
-
-	.review .slide {
-		scroll-snap-align: start;
-		min-width: 100%;
-	}
-
-	//Paged Scroll (Like a Slider)
-	.review .wrapper {
-		overflow-x: auto;
-		scroll-behavior: smooth;
-		display: flex;
-	}
-
-	.review .slide {
-		min-width: 100%;
-		flex-shrink: 0;
-	}
-
-
-	//Reverse Direction (Right-to-Left)
-	.review .wrapper {
-		animation: scrollReverse 15s linear infinite;
-	}
-
-	@keyframes scrollReverse {
-		0% {
-			transform: translateX(0);
-		}
-		100% {
-			transform: translateX(-100%);
-		}
-	}
-
-
-	//Pause on Hover (CSS-Only)
-	.review .wrapper:hover {
-		animation-play-state: paused;
-	}*/
 }

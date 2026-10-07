@@ -1,80 +1,46 @@
 .faq {
-    background: transparent;
-    border: 1px solid var(--light-color);
-    border-radius: 5px;
-    padding: 5px 5px;
-    position: relative;
-    overflow: hidden;
-    margin: 1rem 1rem;
+	background: var(--white);
+	border: 1px solid var(--border);
+	border-radius: var(--radius-sm);
+	padding: 1.5rem;
+	margin: 0.8rem 0;
+	cursor: pointer;
+	transition: all var(--transition);
 
-    div{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+	&:hover { border-color: var(--green); box-shadow: var(--box-shadow); }
 
-        h3{
-            margin: 0 35px 0 0;
-            font-size: 2rem;
-            font-weight: 600;
-        }
-    }
+	&.active {
+		border-color: var(--green);
+		box-shadow: var(--box-shadow);
+	}
 
-    p{
-        //display: none;
-        //margin: 30px 0 0;
+	.faq-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
 
-        max-height: 0px;
-        overflow: hidden;
-        font-weight: 600;
-        //font
-    }
+		h3 {
+			font-size: 1.6rem;
+			font-weight: 600;
+			color: var(--black);
+		}
 
-    .fas{
-        font-size: 3rem;
-    }
+		.chevron {
+			font-size: 1.6rem;
+			color: var(--green);
+			flex-shrink: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	}
 
-
-    &.active {
-        background: var(--white);
-        box-shadow: var(--box-shadow);
-
-        /*&::before, &::after{
-            color: var(--green);
-            content: '\f075';
-            font-family: 'Font Awesome 5 Free';
-            font-size: 7rem;
-            position: absolute;
-            opacity: 0.2;
-            top: 20px;
-            left: 20px;
-            z-index: 0;
-        }*/
-
-
-        @keyframes show {
-            0% {
-                max-height: 0px;
-                margin: 0px;
-            }
-            100% {
-                max-height: min-content;
-                margin: 30px 0 0;
-            }
-        }
-
-        p{
-            //display: block;
-
-            max-height: min-content;
-            margin: 10px 0 0;
-            letter-spacing: .25rem;
-            //background: greenyellow;
-            text-decoration: wavy;
-
-            //better for animation
-            //animation: show 2s  linear;
-
-        }
-    }
-
+	p {
+		overflow: hidden;
+		font-size: 1.4rem;
+		color: var(--light-color);
+		line-height: 1.6;
+		padding: 0;
+	}
 }
