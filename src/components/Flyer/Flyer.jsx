@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { products } from '../../../data';
+import { NavLink } from 'react-router-dom';
 import './Flyer.scss';
 
 export default function Flyer() {
@@ -18,7 +19,7 @@ export default function Flyer() {
         <h2>{featured.title}</h2>
         <span className="offer">Special Offer @ KSH {featured.price.toLocaleString()}</span>
         <p>Limited stock available</p>
-        <a href="/shop" className='btn'>Order Now</a>
+        <NavLink to="/shop" className='btn'>Order Now</NavLink>
       </div>
     </motion.div>
   );

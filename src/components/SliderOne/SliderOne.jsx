@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import './SliderOne.scss';
 import { products } from '../../../data';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
 
 export default function SliderOne() {
     const [slideIndex, setSlideIndex] = useState(0);
@@ -35,7 +36,7 @@ export default function SliderOne() {
                             <hr />
                             <h2 className='heading'>{dish.title}</h2>
                             <p>{dish.description}</p>
-                            <a href="/shop" className='btn'>Shop Now</a>
+                            <NavLink to="/shop" className='btn'>Shop Now</NavLink>
                         </div>
                     </div>
                 ))}

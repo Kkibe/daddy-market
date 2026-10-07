@@ -27,42 +27,43 @@ export default function PopularStoreItem({ data }) {
     };
 
     return (
-        <motion.div
-            className="card"
-            whileHover={{ y: -4 }}
-            transition={{ duration: 0.2 }}
-        >
-            <ShareModal visible={showShareModal} setVisible={() => setShowShareModal(false)} />
-
-            <div className="image">
-                <img src={data.image} alt={data.title} loading="lazy" />
-                <button className='icon share' onClick={() => setShowShareModal(true)} aria-label="Share">
-                    <FaShareAlt />
-                </button>
-            </div>
-
-            <div className="content">
-                <div className="meta">
-                    <span className='rating trailing'>
-                        <FaStar className='star' /> {data.rating || data.stars || '4.5'}
-                    </span>
-                    <div className="price duration">KSH {data.price.toLocaleString()}</div>
+        <div className="card-wrapper">
+            <ShareModal visible={showShareModal} setVisible={setShowShareModal} product={data} />
+            <motion.div
+                className="card"
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.2 }}
+            >
+                <div className="image">
+                    <img src={data.image} alt={data.title} loading="lazy" />
+                    <button className='icon share' onClick={() => setShowShareModal(true)} aria-label="Share">
+                        <FaShareAlt />
+                    </button>
                 </div>
 
-                <NavLink to={`/shop/${data.id}`} className="product-title">
-                    <h3>{data.title}</h3>
-                </NavLink>
+                <div className="content">
+                    <div className="meta">
+                        <span className='rating trailing'>
+                            <FaStar className='star' /> {data.rating || data.stars || '4.5'}
+                        </span>
+                        <div className="price duration">KSH {data.price.toLocaleString()}</div>
+                    </div>
 
-                <p>{data.description}</p>
+                    <NavLink to={`/shop/${data.id}`} className="product-title">
+                        <h3>{data.title}</h3>
+                    </NavLink>
 
-                <button
-                    className={`add-to-cart add ${isInCart ? 'in-cart' : ''}`}
-                    onClick={handleAddToCart}
-                    aria-label={isInCart ? 'Remove from cart' : 'Add to cart'}
-                >
-                    {isInCart ? <FaCheckCircle className='cart-icon' /> : <FaCartPlus className='cart-icon' />}
-                </button>
-            </div>
-        </motion.div>
+                    <p>{data.description}</p>
+
+                    <button
+                        className={`add-to-cart add ${isInCart ? 'in-cart' : ''}`}
+                        onClick={handleAddToCart}
+                        aria-label={isInCart ? 'Remove from cart' : 'Add to cart'}
+                    >
+                        {isInCart ? <FaCheckCircle className='cart-icon' /> : <FaCartPlus className='cart-icon' />}
+                    </button>
+                </div>
+            </motion.div>
+        </div>
     );
 }

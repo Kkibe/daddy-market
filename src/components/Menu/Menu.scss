@@ -48,6 +48,13 @@
 				.btn {
 					padding: 0.7rem 1.5rem;
 					font-size: 1.3rem;
+
+					&.in-cart {
+						background: var(--green-light);
+						color: var(--green);
+						font-weight: 600;
+						&:hover { background: #e74c3c; color: var(--white); }
+					}
 				}
 			}
 		}
