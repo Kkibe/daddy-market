@@ -1,14 +1,25 @@
+.share-modal-backdrop {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 998;
+}
+
 .share-modal {
-	position: absolute;
-	top: 100%;
-	right: 0.5rem;
-	margin-top: 0.5rem;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	background: var(--white);
 	padding: 1.5rem;
 	border-radius: var(--radius);
-	width: 280px;
+	width: calc(100% - 2rem);
+	max-width: 320px;
 	box-shadow: var(--box-shadow-lg);
-	z-index: 100;
+	z-index: 999;
 	border: 1px solid var(--border);
 
 	.content-share {

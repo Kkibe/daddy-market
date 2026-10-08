@@ -5,6 +5,7 @@ import { FaMinus, FaPlus, FaStar, FaCheck, FaArrowLeft } from 'react-icons/fa6';
 import { FaShoppingBasket } from 'react-icons/fa';
 import { products } from '../../../data';
 import PopularStoreItem from '../../components/ProductCards/PopularStoreItem';
+import ProductImage from '../../components/ProductImage';
 import { useCartActions } from '../../hooks/useCartActions';
 import './Product.scss';
 
@@ -50,7 +51,7 @@ export default function Product() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.4 }}
         >
-          <img src={data.image} alt={data.title} />
+          <ProductImage src={data.image} alt={data.title} />
         </motion.div>
 
         <div className="content">

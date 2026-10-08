@@ -1,5 +1,6 @@
 import { FaXmark } from 'react-icons/fa6';
 import { useCartActions } from '../../hooks/useCartActions';
+import ProductImage from '../ProductImage';
 import './CartItem.scss';
 
 export default function CartItem({ item }) {
@@ -14,7 +15,7 @@ export default function CartItem({ item }) {
     <div className='cart-item'>
       <div className="wrapper">
         <div className="preview-image">
-          <img src={item.image} alt={item.title || item.description} loading="lazy" />
+          <ProductImage src={item.image} alt={item.title || item.description} />
         </div>
         <p className="item-name">{item.title || item.description}</p>
         <input

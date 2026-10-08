@@ -5,6 +5,7 @@ import { FaMinus, FaXmark } from "react-icons/fa6";
 import { FaPlus, FaShippingFast, FaStar } from 'react-icons/fa';
 import { products } from '../../../data';
 import { useCartActions } from '../../hooks/useCartActions';
+import ProductImage from '../ProductImage';
 import { NavLink } from 'react-router-dom';
 
 export default function Single() {
@@ -45,7 +46,7 @@ export default function Single() {
         transition={{ duration: 0.3 }}
       >
         <div className="image">
-          <img src={product.image} alt={product.title} />
+          <ProductImage src={product.image} alt={product.title} />
         </div>
         <div className="details">
           <h1>{product.title}</h1>

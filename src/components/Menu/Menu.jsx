@@ -3,6 +3,7 @@ import { FaEye } from "react-icons/fa";
 import { motion } from 'framer-motion';
 import { products } from '../../../data';
 import { useCartActions } from '../../hooks/useCartActions';
+import ProductImage from '../ProductImage';
 
 export default function Menu() {
   const { addToCart, cart, removeFromCart } = useCartActions();
@@ -46,7 +47,7 @@ export default function Menu() {
               transition={{ delay: (i % 4) * 0.05 }}
             >
               <div className="image">
-                <img src={item.image} alt={item.title} loading="lazy" />
+                <ProductImage src={item.image} alt={item.title} />
                 <button className="icon eye" onClick={toggleSingle} aria-label="Quick view"><FaEye /></button>
               </div>
               <div className="content">

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaCartPlus, FaCheckCircle, FaShareAlt, FaStar } from "react-icons/fa";
 import ShareModal from '../ShareModal/ShareModal';
+import ProductImage from '../ProductImage';
 import { NavLink } from 'react-router-dom';
 import { useCartActions } from '../../hooks/useCartActions';
 
@@ -35,7 +36,7 @@ export default function PopularStoreItem({ data }) {
                 transition={{ duration: 0.2 }}
             >
                 <div className="image">
-                    <img src={data.image} alt={data.title} loading="lazy" />
+                    <ProductImage src={data.image} alt={data.title} />
                     <button
                         className='share-btn'
                         onClick={() => setShowShareModal(true)}

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaEye, FaShareAlt, FaStar } from 'react-icons/fa';
 import ShareModal from '../ShareModal/ShareModal';
+import ProductImage from '../ProductImage';
 import { useCartActions } from '../../hooks/useCartActions';
 
 export default function Dishes({ data }) {
@@ -39,7 +40,7 @@ export default function Dishes({ data }) {
         >
           <button className="icon heart" onClick={() => setVisible(true)} aria-label="Share"><FaShareAlt /></button>
           <button className="icon eye" onClick={toggleSingle} aria-label="Quick view"><FaEye /></button>
-          <img src={item.image} alt={item.title} loading="lazy" />
+          <ProductImage src={item.image} alt={item.title} />
           <h3>{item.title}</h3>
           <div className="dish-meta">
             <span className="dish-rating"><FaStar className="star" /> {item.rating || item.stars || '4.5'}</span>

@@ -9,7 +9,7 @@ import { cartTotalSelector } from '../../recoil/selectors';
 
 export default function Cart() {
 	const cartItems = useRecoilValue(cartState);
-	const { subtotal, shipping, discount, total, totalQuantity } = useRecoilValue(cartTotalSelector);
+	const { subtotal, shipping, discount, total, totalQuantity, uniqueItemsCount } = useRecoilValue(cartTotalSelector);
 	const { clearCart } = useCartActions();
 
 	return (
@@ -18,7 +18,7 @@ export default function Cart() {
 				<FaArrowLeft /> Continue Shopping
 			</NavLink>
 
-			<h1 className="cart-title">My Cart ({/*cartItems.length*//*itemCount*/ totalQuantity})</h1>
+			<h1 className="cart-title">My Cart ({uniqueItemsCount} {uniqueItemsCount === 1 ? 'item' : 'items'}, {totalQuantity} {totalQuantity === 1 ? 'unit' : 'units'})</h1>
 
 			<div className="cart-content content">
 				{cartItems.length === 0 ? (
@@ -56,7 +56,7 @@ export default function Cart() {
 						<div className="summary col-md-12 col-lg-4">
 							<h3>Order Summary</h3>
 							<div className="summary-row summary-item">
-								<span className="text">Subtotal</span>
+								<span className="text">Subtotal ({totalQuantity} {totalQuantity === 1 ? 'unit' : 'units'})</span>
 								<span className="price">KSH {subtotal.toLocaleString()}</span>
 							</div>
 							<div className="summary-row summary-item">
